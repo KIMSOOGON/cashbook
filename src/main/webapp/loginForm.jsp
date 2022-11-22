@@ -24,5 +24,8 @@
 			</tr>
 		</table>
 	</form>
+	<a href="<%=request.getContextPath()%>/insertMemberForm.jsp">
+		회원가입
+	</a>
 </body>
 </html>
