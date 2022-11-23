@@ -33,29 +33,38 @@ public class MemberDao {
 		return null;
 		}
 	
-	// 회원가입
+	// id 중복체크
+	public boolean checkId(String memberId) throws Exception{
+		
+		// db 접속
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String idSql = "SELECT member_id FROM member WHERE member_id = ?";
+		PreparedStatement idStmt = conn.prepareStatement(idSql);
+		idStmt.setString(1, memberId);
+		
+		ResultSet idRs = idStmt.executeQuery();
+		
+		if(idRs.next()) { // 중복이 있을 시,
+			idRs.close();
+			idStmt.close();
+			conn.close();
+			return true;
+		} else {
+			idRs.close();
+			idStmt.close();
+			conn.close();
+			return false;
+		}
+	}
+	
+	// 회원가입 호출 : insertMemberForm.jsp
 	public int insertMember(Member paramMember) throws Exception {
 		int resultRow = 0;
 		
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		
-		/*
-		// 아이디 중복체크 쿼리문
-		String idSql = "SELECT member_id memberId FROM member WHERE member_id = ?";
-		PreparedStatement idStmt = conn.prepareStatement(idSql);
-		idStmt.setString(1, paramMember.getMemberId());
-		ResultSet idRs = idStmt.executeQuery();
-		if(idRs.next()) { // 아이디 중복일 경우
-			// 중복 msg 돌려보내기
-			idCheck = 1;
-
-			idRs.close();
-			idStmt.close();
-			conn.close();
-			return idCheck;
-		}
-		*/
 		
 		// INSERT 쿼리문
 		String memberSql = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?,?,?,curdate(),curdate())";

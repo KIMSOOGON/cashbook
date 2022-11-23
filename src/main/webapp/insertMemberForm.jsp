@@ -39,10 +39,10 @@
 		</div>
 		<div>
 			<%
-				String checkId = request.getParameter("checkId");
-				if(checkId!=null){
+				String idMsg = request.getParameter("idMsg");
+				if(idMsg!=null){
 			%>
-					<%=checkId%>
+					<%=idMsg%>
 			<%
 				}
 			%>

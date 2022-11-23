@@ -7,6 +7,7 @@ public class Cash {
 	private String memberId;
 	private String cashDate;
 	private long cashPrice;
+	private String cashMemo;
 	private String updatedate;
 	private String createdate;
 	
@@ -39,6 +40,12 @@ public class Cash {
 	}
 	public void setCashPrice(long cashPrice) {
 		this.cashPrice = cashPrice;
+	}
+	public String getCashMemo() {
+		return cashMemo;
+	}
+	public void setCashMemo(String cashMemo) {
+		this.cashMemo = cashMemo;
 	}
 	public String getUpdatedate() {
 		return updatedate;

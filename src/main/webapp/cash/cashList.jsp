@@ -76,6 +76,16 @@
 		</a>
 	</div>
 	<div>
+		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">
+			회원수정
+		</a>
+	</div>
+	<div>
+		<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp">
+			회원탈퇴
+		</a>
+	</div>
+	<div>
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 		
 		<%=year%>년 <%=month+1%>월
@@ -84,7 +94,7 @@
 	</div>
 	<table border="1">
 		<tr>
-			<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+			<th style="color:red">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th style="color:blue">토</th>
 		</tr>
 		<tr>
 			<!-- 달력 -->
