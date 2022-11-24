@@ -7,6 +7,16 @@
 </head>
 <body>
 	<h1>로그인</h1>
+	<div>
+		<%	// 회원탈퇴 시, 메세지 출력
+			String dtMsg = request.getParameter("dtMsg");
+			if(dtMsg!=null){
+		%>
+				<%=dtMsg%>
+		<%
+			}
+		%>
+	</div>
 	<form action="<%=request.getContextPath()%>/loginAction.jsp">
 		<table>
 			<tr>

@@ -13,7 +13,7 @@ public class MemberDao {
 		Connection conn = dbUtil.getConnection();
 		
 		// 로그인 쿼리 (id 및 pw 검증) (호출 : loginAction.jsp)
-		String sql = "SELECT member_id memberId, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		String sql = "SELECT member_id memberId, member_level memberLevel, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId()); // 매개변수(paramMember)로 들어온 id
 		stmt.setString(2, paramMember.getMemberPw()); // 매개변수로 들어온 pw
@@ -21,6 +21,7 @@ public class MemberDao {
 		if(rs.next()) { // id와 pw 일치한 경우 리턴값 returnMember
 			resultMember = new Member();
 			resultMember.setMemberId(rs.getString("memberId"));
+			resultMember.setMemberLevel(rs.getInt("memberLevel"));
 			resultMember.setMemberName(rs.getString("memberName"));
 			rs.close();
 			stmt.close();
@@ -130,7 +131,7 @@ public class MemberDao {
 		String dtSql = "DELETE FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
 		PreparedStatement dtStmt = conn.prepareStatement(dtSql);
 		dtStmt.setString(1, paramMember.getMemberId());
-		dtStmt.setString(1, paramMember.getMemberPw());
+		dtStmt.setString(2, paramMember.getMemberPw());
 		
 		resultRow = dtStmt.executeUpdate();
 		
