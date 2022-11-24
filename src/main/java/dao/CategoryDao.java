@@ -23,7 +23,6 @@ public class CategoryDao {
 			c.setCategoryKind(rs.getString("categoryKind"));
 			categoryList.add(c);
 		}
-		
 		// ORDER BY kind
 		return categoryList;
 	}

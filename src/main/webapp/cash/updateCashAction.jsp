@@ -52,5 +52,4 @@
 	} else {
 		System.out.println("cash 수정에러");
 	}
-	
 %>

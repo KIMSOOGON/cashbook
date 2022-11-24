@@ -22,6 +22,16 @@
 	<h1>회원정보수정</h1>
 	<hr>
 	<form action="<%=request.getContextPath()%>/updateMemberAction.jsp">
+		<div>
+			<%	// 빈항목 제출 시, 문구출력
+				String msg = request.getParameter("msg");
+				if(msg!=null){
+			%>		
+					<%=msg%>					
+			<%		
+				}
+			%>
+		</div>
 		<table border="1">
 			<tr>
 				<th>아이디</th>

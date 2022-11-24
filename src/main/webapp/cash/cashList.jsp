@@ -69,7 +69,8 @@
 	<div>
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 	</div>
-	<h1><%=loginMember.getMemberId()%>님의 가계부캘린더</h1>
+	<h1><%=loginMember.getMemberId()%>(<%=loginMember.getMemberName()%>)님의 가계부캘린더</h1>
+	<hr>
 	<div>
 		<a href="<%=request.getContextPath()%>/logout.jsp">
 			LOG-OUT
@@ -141,6 +142,5 @@
 			%>
 		</tr>
 	</table>
-	<div>
 </body>
 </html>

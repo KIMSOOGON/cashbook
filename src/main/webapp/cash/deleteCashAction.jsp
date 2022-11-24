@@ -19,5 +19,4 @@
 		System.out.println("삭제성공");
 		response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp?year="+year+"&month="+month+"&date="+date);
 	}
-	
 %>

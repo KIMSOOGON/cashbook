@@ -55,6 +55,4 @@
 	} else {
 		System.out.println("가계부 추가 에러");
 	}
-	
-	
 %>

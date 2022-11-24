@@ -3,7 +3,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*"%>
 <%
-	
 	// 1 controller
 	// 한글 인코딩
 	request.setCharacterEncoding("utf-8");
@@ -112,7 +111,6 @@
 				<td><%=m.get("categoryName")%></td>
 				<td><%=m.get("cashPrice")%></td>
 				<td><%=m.get("cashMemo")%></td>
-			<!-- 	<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a></td> -->
 			 	<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>">수정</a></td>
 				<td><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
 			</tr>	
