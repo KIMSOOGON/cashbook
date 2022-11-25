@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*"%>
 <%
-	System.out.println("<관리자모드 진입>");
 	// Controller
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	
@@ -30,7 +29,7 @@
 		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
 	</ul>
 	<div>
-		<!-- adminMain Content -->
+		<!-- categoryList Content -->
 	</div>
 </body>
 </html>

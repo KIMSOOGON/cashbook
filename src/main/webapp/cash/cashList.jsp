@@ -72,6 +72,15 @@
 	<h1><%=loginMember.getMemberId()%>(<%=loginMember.getMemberName()%>)님의 가계부캘린더</h1>
 	<hr>
 	<div>
+		<%
+			if(loginMember.getMemberLevel()>0){
+		%>		
+				<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>	
+		<%		
+			}
+		%>
+	</div>	
+	<div>
 		<a href="<%=request.getContextPath()%>/logout.jsp">
 			LOG-OUT
 		</a>

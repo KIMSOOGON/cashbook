@@ -22,7 +22,7 @@
 	<h1>회원탈퇴</h1>
 	<hr>
 	<div>비밀번호를 입력하여 탈퇴하세요.</div>
-	<form action="<%=request.getContextPath()%>/deleteMemberAction.jsp">
+	<form action="<%=request.getContextPath()%>/deleteMemberAction.jsp" method="post">
 		<div>
 			<%	
 				String pwMsg = request.getParameter("pwMsg");

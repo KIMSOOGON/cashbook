@@ -5,7 +5,75 @@ import vo.Member;
 import java.net.URLEncoder;
 import util.DBUtil;
 import java.sql.*;
+import java.util.ArrayList;
 public class MemberDao {
+	// 관리자 : 멤버 레벨수정
+	public int updateMemberLevel(Member member) {
+		return 0; 
+	}
+	
+	// 관리자 멤버수 (호출 : memberList.jsp)
+	public int selectMemberCount() throws Exception{
+		int cntMember = 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT COUNT(*) FROM member";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			cntMember = rs.getInt("COUNT(*)");
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		return cntMember;
+	}
+	
+	// 관리자 멤버 리스트 (호출 : memberList.jsp)
+	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception{
+		ArrayList<Member> list = new ArrayList<Member>();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate"
+					+ " FROM member ORDER BY createdate DESC"
+					+ " LIMIT ?,?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			Member m = new Member();
+			m.setMemberNo(rs.getInt("memberNo"));
+			m.setMemberId(rs.getString("memberId"));
+			m.setMemberLevel(rs.getInt("memberLevel"));
+			m.setMemberName(rs.getString("memberName"));
+			m.setUpdatedate(rs.getString("updatedate"));
+			m.setCreatedate(rs.getString("createdate"));
+			list.add(m);
+		}
+		dbUtil.close(rs, stmt, conn);
+		return list;
+	}
+	// 관리자 멤버 강퇴 (호출 : memberListDeleteAction.jsp)
+	public int deleteMemberByAdmin(Member member) throws Exception{
+		int deleteRow = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "DELETE FROM member WHERE member_no = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberNo());
+		
+		deleteRow = stmt.executeUpdate();
+		
+		dbUtil.close(null, stmt, conn);
+		return deleteRow;
+	}
+	
 	public Member login(Member paramMember) throws Exception { // 예외처리
 		Member resultMember = null;
 		

@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form action="<%=request.getContextPath()%>/insertMemberAction.jsp">
+	<form action="<%=request.getContextPath()%>/insertMemberAction.jsp" method="post">
 		<table>
 			<tr>
 				<th>아이디</th>
