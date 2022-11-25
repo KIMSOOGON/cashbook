@@ -71,7 +71,9 @@
 						<td><%=m.getMemberName()%></td>
 						<td><%=m.getUpdatedate()%></td>
 						<td><%=m.getCreatedate()%></td>
-						<td><a href="">레벨수정</a></td>
+						<td>
+							<a href="">레벨수정</a>
+						</td>
 						<td><a href="<%=request.getContextPath()%>/admin/memberListDeleteAction.jsp?memberNo=<%=m.getMemberNo()%>">강제탈퇴</a></td>
 					</tr>
 			<%		
