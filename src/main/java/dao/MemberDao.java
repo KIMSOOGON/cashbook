@@ -8,8 +8,27 @@ import java.sql.*;
 import java.util.ArrayList;
 public class MemberDao {
 	// 관리자 : 멤버 레벨수정
-	public int updateMemberLevel(Member member) {
-		return 0; 
+	public int updateMemberLevel(Member member) throws Exception {
+		int updateLevelRow = 0;
+		
+		String sql = "UPDATE member"
+					+ " SET member_level = ?"
+					+ " WHERE member_no = ?";
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null; 
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberLevel());
+		stmt.setInt(2, member.getMemberNo());
+		
+		updateLevelRow = stmt.executeUpdate();
+				
+		dbUtil.close(null, stmt, conn);
+		return updateLevelRow; 
 	}
 	
 	// 관리자 멤버수 (호출 : memberList.jsp)

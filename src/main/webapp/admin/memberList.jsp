@@ -42,11 +42,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
-	</ul>
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
+	</div>
 	<div>
 		<!-- memberList Content -->
 		<h1>멤버목록</h1>
@@ -72,9 +71,17 @@
 						<td><%=m.getUpdatedate()%></td>
 						<td><%=m.getCreatedate()%></td>
 						<td>
-							<a href="">레벨수정</a>
+							<form method="post" action="<%=request.getContextPath()%>/admin/memberListUpdateLevelAction.jsp">
+								<input type="hidden" name="memberNo" value="<%=m.getMemberNo()%>">
+								<select name="memberLevel">
+									<option value="">=선택=</option>
+									<option value="0">일반회원(0)</option>
+									<option value="1">관리자(1)</option>
+								</select>
+								<button type="submit">수정</button>
+							</form>
 						</td>
-						<td><a href="<%=request.getContextPath()%>/admin/memberListDeleteAction.jsp?memberNo=<%=m.getMemberNo()%>">강제탈퇴</a></td>
+						<td><a href="<%=request.getContextPath()%>/admin/memberListDeleteAction.jsp?memberNo=<%=m.getMemberNo()%>">OUT</a></td>
 					</tr>
 			<%		
 				}

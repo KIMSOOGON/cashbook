@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*"%>
+<%@ page import="dao.*"%>
+<%@ page import="java.util.*"%>
 <%
 	// Controller
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -9,12 +11,21 @@
 		return;
 	} 
 	
+	/*
+	// 페이징 작업
+	int currentPage = 1; // 현재페이지 초기화 1쪽
+	if(request.getParameter("currentPage")!=null){ // 현재페이지 유동적으로
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	System.out.println("현재페이지: "+currentPage);
+	int rowPerPage = 10;
+	int beginRow = (currentPage-1) * rowPerPage;
+	*/
+	
+	
 	// Model 호출
-	
-	// 공지 5개, 멤버 5명 (최신업데이트)
-	
-	
-	// View
+	CategoryDao categoryDao = new CategoryDao();
+	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 %>
 <!DOCTYPE html>
 <html>
@@ -23,13 +34,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
-	</ul>
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
+	</div>
 	<div>
 		<!-- categoryList Content -->
+		<h1>카테고리 목록</h1>
+		<a href="<%=request.getContextPath()%>/admin/categoryListInsertForm.jsp">카테고리 추가</a>
+		<table>
+			<tr>
+				<th>번호</th>
+				<th>수입/지출</th>
+				<th>이름</th>
+				<th>최신수정날짜</th>
+				<th>생성날짜</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</tr>
+			<!-- 모델데이터 categoryList 출력 -->
+			<%
+				for(Category c:categoryList){
+			%>
+					<tr>
+						<td><%=c.getCategoryNo()%></td>
+						<td><%=c.getCategoryKind()%></td>
+						<td><%=c.getCategoryName()%></td>
+						<td><%=c.getUpdatedate()%></td>
+						<td><%=c.getCreatedate()%></td>
+						<td><a href="<%=request.getContextPath()%>/admin/categoryListUpdateForm.jsp?categoryNo=<%=c.getCategoryNo()%>">수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/admin/categoryListDeleteAction.jsp?categoryNo=<%=c.getCategoryNo()%>">삭제</a></td>
+					</tr>			
+			<%
+				}
+			%>
+		</table>
 	</div>
 </body>
 </html>
