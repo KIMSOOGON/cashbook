@@ -31,7 +31,6 @@ public class CategoryDao {
 		return row;
 	}
 	
-	
 	// admin -> 카테고리 수정폼 (호출 : categoryListUpdateForm.jsp)
 	public Category selectCategoryOne(int categoryNo) throws Exception {
 		Category category = null;

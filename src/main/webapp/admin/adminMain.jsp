@@ -4,7 +4,7 @@
 <%@ page import="java.util.*"%>
 <%
 	System.out.println("<관리자모드 진입>");
-	// Controller
+	// Controller	
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	
 	if(loginMember == null||loginMember.getMemberLevel() < 1){

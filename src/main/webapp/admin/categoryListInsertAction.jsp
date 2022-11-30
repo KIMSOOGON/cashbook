@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*"%>
 <%@ page import="dao.*"%>
+<%@ page import="java.net.URLEncoder"%>
 <%
 	// 1
 	request.setCharacterEncoding("utf-8");
@@ -17,7 +18,8 @@
 	// Name 공백 돌려보내기
 	if(categoryName==null||categoryName.equals("")){
 		System.out.println("카테고리 이름을 입력하세요");
-		response.sendRedirect(request.getContextPath()+rtnUrl);
+		String msg = URLEncoder.encode("카테고리 이름을 입력하세요","utf-8");
+		response.sendRedirect(request.getContextPath()+rtnUrl+"?msg="+msg);
 		return;
 	}
 	

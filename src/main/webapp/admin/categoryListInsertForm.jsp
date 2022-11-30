@@ -15,6 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>[카테고리 추가]</h1>
 	<form action = "<%=request.getContextPath()%>/admin/categoryListInsertAction.jsp" method="post">
 		<!--  -->
 		<div>categoryKind
@@ -24,6 +25,14 @@
 		<div>
 			categoryName
 			<input type="text" name="categoryName">
+			<%	// 공백 입력 시, 문장 출력 "카테고리 이름을 입력하세요"
+				String msg = request.getParameter("msg");
+				if(msg!=null){
+			%>		
+					<%=msg%>	
+			<%		
+				}
+			%>
 		</div>
 		<div>
 			<button type="submit">등록</button> 

@@ -52,7 +52,7 @@
 	</div>
 	<div>
 		<!-- noticeList Content -->
-		<h1>공지</h1>
+		<h1>공지관리</h1>
 		<a href="<%=request.getContextPath()%>/admin/noticeListInsertForm.jsp">공지입력</a>
 		<table border="1">
 			<tr>

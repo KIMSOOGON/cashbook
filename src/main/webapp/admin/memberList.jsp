@@ -4,6 +4,8 @@
 <%@ page import="java.util.*"%>
 <%
 	// Controller
+	request.setCharacterEncoding("utf-8");
+
 	// 관리자 session
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	
@@ -49,7 +51,7 @@
 	<div>
 		<!-- memberList Content -->
 		<h1>멤버목록</h1>
-		<table>
+		<table border="1">
 			<tr>
 				<th>멤버변호</th>
 				<th>아이디</th>

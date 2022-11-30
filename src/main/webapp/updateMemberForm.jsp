@@ -19,6 +19,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
 	<h1>회원정보수정</h1>
 	<hr>
 	<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">

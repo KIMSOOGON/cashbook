@@ -11,18 +11,6 @@
 		return;
 	} 
 	
-	/*
-	// 페이징 작업
-	int currentPage = 1; // 현재페이지 초기화 1쪽
-	if(request.getParameter("currentPage")!=null){ // 현재페이지 유동적으로
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}
-	System.out.println("현재페이지: "+currentPage);
-	int rowPerPage = 10;
-	int beginRow = (currentPage-1) * rowPerPage;
-	*/
-	
-	
 	// Model 호출
 	CategoryDao categoryDao = new CategoryDao();
 	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
@@ -42,7 +30,7 @@
 		<!-- categoryList Content -->
 		<h1>카테고리 목록</h1>
 		<a href="<%=request.getContextPath()%>/admin/categoryListInsertForm.jsp">카테고리 추가</a>
-		<table>
+		<table border="1">
 			<tr>
 				<th>번호</th>
 				<th>수입/지출</th>
