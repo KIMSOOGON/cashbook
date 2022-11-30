@@ -18,7 +18,7 @@
 	if(resultMember != null){ // 로그인 성공
 		System.out.println("로그인 성공!");
 		session.setAttribute("loginMember",resultMember); // session안에 로그인 ID,PW,이름 저장
-		redirectUrl = "/cash/cashList.jsp";
+		redirectUrl = "/index.jsp";
 	}
 	
 	// redirect
