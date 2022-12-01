@@ -87,6 +87,7 @@
 				<%
 					} else { // 로그인 되어있는 경우, LOG-OUT 출력
 				%>
+						<%=loginMember.getMemberId()%>님
 						<a href="<%=request.getContextPath()%>/logout.jsp" class="text-warning">LOG-OUT</a>
 				<%
 					}
@@ -102,7 +103,7 @@
 	<!-- ======= Header ======= -->
 	<header id="header" class="d-flex align-items-center">
 		<div class="container d-flex align-items-center justify-content-between">        
-			<h1 class="logo"><a href="index.jsp">구디 가계부</a></h1>
+			<h1 class="logo"><a href="<%=request.getContextPath()%>/index.jsp">구디 가계부</a></h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -110,10 +111,13 @@
 				<ul>
 					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					<li><a class="nav-link scrollto active" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
 					<li><a class="nav-link scrollto " href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/logout.jsp">LOG-OUT</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
+					<li class="dropdown"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
+							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
+						</ul>
+					</li>
 					<%
 						if(loginMember.getMemberLevel() == 1){ // 관리자로 로그인 시에만 출력
 					%>
@@ -141,18 +145,20 @@
 			<div class="section-title">
 				<span>Financial Ledger Detail</span>
 				<h2>Financial Ledger Detail</h2>
-				<p><%=year%>년 <%=month%>월 <%=date%>일</p>
+				<p>
+					
+				</p>
 			</div>
 			
 			<!-- cash 목록 출력 -->
 			<div>
-				<h3>목록</h3>
-				<table class="table table-hover">
+				<h3><%=year%>년 <%=month%>월 <%=date%>일 수입 및 지출 내역</h3>
+				<table class="table table-hover rounded bg-white">
 					<tr>
-						<th>categoryKind</th>
-						<th>categoryName</th>
-						<th>cashPrice</th>
-						<th>cashMemo</th>
+						<th>수입(+)/지출(-)</th>
+						<th>종류</th>
+						<th>금액</th>
+						<th>내용</th>
 						<th>수정</th>
 						<th>삭제</th>
 					</tr>
@@ -164,8 +170,8 @@
 							<td><%=m.get("categoryName")%></td>
 							<td><%=m.get("cashPrice")%></td>
 							<td><%=m.get("cashMemo")%></td>
-						 	<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>">수정</a></td>
-							<td><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
+						 	<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>"><img src="<%=request.getContextPath()%>/assets/img/edit2.png" style="width:25px"></a></td>
+							<td><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>"><img src="<%=request.getContextPath()%>/assets/img/delete3.png" style="width:25px"></a></td>
 						</tr>	
 				<%		
 					}
@@ -176,7 +182,7 @@
 	</section>
 			
 	<!-- cash 입력 폼 -->
-	<section id="contact" class="contact">
+	<section id="contact" class="contact py-1">
 		<div class="container pt-5 col-lg-6 text-center">
 		<h3 class="text-secondary">가계부 추가</h3>
 		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post" role="form" class="php-email-form">
@@ -211,8 +217,5 @@
 		</form>
 		</div>
 	</section>
-
-	
-	
 </body>
 </html>

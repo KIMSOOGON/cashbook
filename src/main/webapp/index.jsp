@@ -92,7 +92,9 @@
 						<a href="<%=request.getContextPath()%>/loginForm.jsp" class="text-warning">LOG-IN</a>
 				<%
 					} else { // 로그인 되어있는 경우, LOG-OUT 출력
+						Member loginMember = (Member)session.getAttribute("loginMember");
 				%>
+						<%=loginMember.getMemberId()%>님
 						<a href="<%=request.getContextPath()%>/logout.jsp" class="text-warning">LOG-OUT</a>
 				<%
 					}
@@ -116,10 +118,13 @@
 				<ul>
 					<li><a class="nav-link scrollto active" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
 					<li><a class="nav-link scrollto " href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/logout.jsp">LOG-OUT</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
+					<li class="dropdown"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
+							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
+						</ul>
+					</li>
 					<%
 						if(session.getAttribute("loginMember") != null){ // 로그인되어있는경우
 							Member loginMember = (Member)session.getAttribute("loginMember");
@@ -149,7 +154,7 @@
     <div class="container position-relative text-center" data-aos="fade-up" data-aos-delay="500">
     <div class="card shadow mb-4" style="background-color:rgb(30,30,30)">
       <div class="card-header py-3">
-	      <h3 class="m-0 font-weight-bold text-primary">Latest Notice</h3>
+	      <h3 class="m-0 font-weight-bold text-primary">Offical Notice</h3>
 	      <div class="card-body">
 	      	<div class="table-responsive">
 	     	 <table class="container table table-bordered bg-white" id="dataTable">

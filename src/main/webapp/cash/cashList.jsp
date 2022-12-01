@@ -115,6 +115,7 @@
 				<%
 					} else { // 로그인 되어있는 경우, LOG-OUT 출력
 				%>
+						<%=loginMember.getMemberId()%>님
 						<a href="<%=request.getContextPath()%>/logout.jsp" class="text-warning">LOG-OUT</a>
 				<%
 					}
@@ -129,7 +130,7 @@
 	<!-- ======= Header ======= -->
 	<header id="header" class="d-flex align-items-center">
 		<div class="container d-flex align-items-center justify-content-between">        
-			<h1 class="logo"><a href="index.jsp">구디 가계부</a></h1>
+			<h1 class="logo"><a href="<%=request.getContextPath()%>/index.jsp">구디 가계부</a></h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -137,10 +138,13 @@
 				<ul>
 					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					<li><a class="nav-link scrollto active" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
 					<li><a class="nav-link scrollto " href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/logout.jsp">LOG-OUT</a></li>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
+					<li class="dropdown"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
+							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
+						</ul>
+					</li>
 					<%
 						if(loginMember.getMemberLevel() == 1){ // 관리자로 로그인 시에만 출력
 					%>
