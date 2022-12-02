@@ -78,7 +78,7 @@
 
       		<nav id="navbar" class="navbar">
 				<ul>
-					<li><a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
+					<li><a class="nav-link active" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
 					<li class="dropdown"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
@@ -92,7 +92,7 @@
 							Member loginMember = (Member)session.getAttribute("loginMember");
 							if(loginMember.getMemberLevel() == 1){ // 관리자로 로그인 시에만 출력
 					%>
-								<li class="dropdown active"><a href="<%=request.getContextPath()%>/admin/adminMain.jsp"><span class="text-danger">관리자모드</span> <i class="bi bi-chevron-down"></i></a>
+								<li class="dropdown"><a href="<%=request.getContextPath()%>/admin/adminMain.jsp"><span class="text-danger">관리자모드</span> <i class="bi bi-chevron-down"></i></a>
 									<ul>
 										<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice Management</a></li>
 										<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category Management</a></li>

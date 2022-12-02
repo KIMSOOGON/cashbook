@@ -14,18 +14,58 @@
 	// Model 호출
 	CategoryDao categoryDao = new CategoryDao();
 	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
+	
+	String url = "manager";
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	
+	<title>GooDee-Admin-CategoryList</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+	<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	
+	<!-- Vendor CSS Files -->
+	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	
+	<!-- Template Main CSS File -->
+	<link href="<%=request.getContextPath()%>/assets/css/style.css" rel="stylesheet">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- =======================================================
+	* Template Name: Day - v4.9.1
+	* Template URL: https://bootstrapmade.com/day-multipurpose-html-template-for-free/
+	* Author: BootstrapMade.com
+	* License: https://bootstrapmade.com/license/
+	======================================================== -->
+	<style>
+	a {
+		text-decoration:none;
+	}
+	</style>
 </head>
-<body>
+<body id="xmas">
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
+	
 	<div>
 		<!-- categoryList Content -->
 		<h1>카테고리 목록</h1>
