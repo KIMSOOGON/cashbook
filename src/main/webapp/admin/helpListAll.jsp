@@ -74,74 +74,88 @@
 	}
 	</style>
 </head>
-<body>
-		<!-- 메뉴 partial jsp 구성 -->
+<body id="winter">
+	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
 	
-	<h1>문의목록</h1>
-	<table border="1">
-		<tr>
-			<th>No</th>
-			<th>문의내용</th>
-			<th>작성회원ID</th>
-			<th>문의날짜</th>
-			<th>답변내용</th>
-			<th>답변날짜</th>
-			<th>답변추가/수정/삭제</th>
-			<th>문의내역삭제</th>
-		</tr>
-		<%
-			for(HashMap<String,Object> m : list){
-		%>		
-				<tr>
-					<td><%=m.get("helpNo")%></td>
-					<td><%=m.get("helpMemo")%></td>
-					<td><%=m.get("memberId")%></td>
-					<td><%=m.get("helpCreatedate")%></td>
-					<%
-						if(m.get("commentMemo")!=null){
-					%>		
-							<td><%=m.get("commentMemo")%></td>
-							<td><%=m.get("commCreatedate")%></td>
-							<td>
-								<a href="<%=request.getContextPath()%>/admin/helpListAllUpdateForm.jsp?helpNo=<%=m.get("helpNo")%>&commentMemo=<%=m.get("commentMemo")%>"><img src="<%=request.getContextPath()%>/img/edit2.png" style="width:25px"></a>
-								<a href="<%=request.getContextPath()%>/admin/helpListAllDeleteAction.jsp?helpNo=<%=m.get("helpNo")%>"><img src="<%=request.getContextPath()%>/img/delete3.png" style="width:25px"></a>
-							</td>	
-					<%		
-						} else {
-					%>		
-							<td colspan="2">(답변 등록 필요)</td>
-							<td><a href="<%=request.getContextPath()%>/admin/helpListAllInsertForm.jsp?helpNo=<%=m.get("helpNo")%>"><img src="<%=request.getContextPath()%>/img/answer.png" style="width:25px"></a></td>	
-					<%		
-						}
-					%>
-					<td><a href="<%=request.getContextPath()%>/admin/deleteHelpAdminAction.jsp?helpNo=<%=m.get("helpNo")%>"><img src="<%=request.getContextPath()%>/img/delete.png" style="width:20px"></a></td>
-				</tr>	
-		<%		
-			}
-		%>
-	</table>
-	<!-- 페이징 -->
-	<div>
-		<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a>
-		<%
-			if(currentPage>1){
-		%>		
-				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1%>">이전</a>
-		<%
-			}
-		%>
-				<span><%=currentPage%>/<%=lastPage%></span>
-		<%
-			if(currentPage<lastPage){
-		%>
-				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1%>">다음</a>
-		<%		
-			}
-		%>
-		<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">끝</a>
+	<!-- Notice Insert -->
+	<section id="pricing" class="pricing">
+		<div class="container shadow-lg">
+			<div class="section-title">
+				<span>Help Management</span>
+				<h1>Help Management</h1>
+				<p>고객센터 관리</p>
+			</div>
+		</div>
+	</section>
+	
+	<div class="container shadow">
+		<table class="container table table-bordered table-hover bg-light text-center rounded">
+			<tr class="text-primary">
+				<th>No</th>
+				<th>문의내용</th>
+				<th>회원ID</th>
+				<th>문의날짜</th>
+				<th>답변내용</th>
+				<th>답변날짜</th>
+				<th>Edit Comment</th>
+				<th>Delete Help</th>
+			</tr>
+			<%
+				for(HashMap<String,Object> m : list){
+			%>		
+					<tr>
+						<td><%=m.get("helpNo")%></td>
+						<td><%=m.get("helpMemo")%></td>
+						<td><%=m.get("memberId")%></td>
+						<td><%=m.get("helpCreatedate")%></td>
+						<%
+							if(m.get("commentMemo")!=null){
+						%>		
+								<td><%=m.get("commentMemo")%></td>
+								<td><%=m.get("commCreatedate")%></td>
+								<td>
+									<a href="<%=request.getContextPath()%>/admin/helpListAllUpdateForm.jsp?helpNo=<%=m.get("helpNo")%>&commentMemo=<%=m.get("commentMemo")%>"><img src="<%=request.getContextPath()%>/assets/img/edit2.png" style="width:25px"></a>
+									<a href="<%=request.getContextPath()%>/admin/helpListAllDeleteAction.jsp?helpNo=<%=m.get("helpNo")%>"><img src="<%=request.getContextPath()%>/assets/img/delete3.png" style="width:25px"></a>
+								</td>	
+						<%		
+							} else {
+						%>		
+								<td colspan="2">(답변 등록 필요)</td>
+								<td><a href="<%=request.getContextPath()%>/admin/helpListAllInsertForm.jsp?helpNo=<%=m.get("helpNo")%>"><img src="<%=request.getContextPath()%>/assets/img/answer.png" style="width:25px"></a></td>	
+						<%		
+							}
+						%>
+						<td><a href="<%=request.getContextPath()%>/admin/deleteHelpAdminAction.jsp?helpNo=<%=m.get("helpNo")%>"><img src="<%=request.getContextPath()%>/assets/img/delete.png" style="width:20px"></a></td>
+					</tr>	
+			<%		
+				}
+			%>
+		</table>
+		<!-- 페이징 -->
+		<div class="container text-center">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a></li>
+				<%
+					if(currentPage>1){
+				%>		
+						<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1%>">이전</a></li>
+				<%
+					}
+				%>
+						<li class="page-item"><span class="page-link text-warning bg-dark"><%=currentPage%>/<%=lastPage%></span>
+				<%
+					if(currentPage<lastPage){
+				%>
+						<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1%>">다음</a></li>
+				<%		
+					}
+				%>
+				<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">끝</a></li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>

@@ -100,7 +100,7 @@ public class MemberDao {
 		Connection conn = dbUtil.getConnection();
 		
 		// 로그인 쿼리 (id 및 pw 검증) (호출 : loginAction.jsp)
-		String sql = "SELECT member_id memberId, member_level memberLevel, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		String sql = "SELECT member_id memberId, member_level memberLevel, member_name memberName, createdate FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId()); // 매개변수(paramMember)로 들어온 id
 		stmt.setString(2, paramMember.getMemberPw()); // 매개변수로 들어온 pw
@@ -110,6 +110,7 @@ public class MemberDao {
 			resultMember.setMemberId(rs.getString("memberId"));
 			resultMember.setMemberLevel(rs.getInt("memberLevel"));
 			resultMember.setMemberName(rs.getString("memberName"));
+			resultMember.setCreatedate(rs.getString("createdate"));
 			rs.close();
 			stmt.close();
 			conn.close();

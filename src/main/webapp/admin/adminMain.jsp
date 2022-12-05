@@ -62,7 +62,7 @@
 	}
 	</style>
 </head>
-<body id="lf">
+<body id="winter">
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
@@ -70,9 +70,9 @@
 	
 	<!-- adminMain Content -->
 	<section id="team" class="team">
-	<h1 class="container py-4 my-2 text-center text-warning"><%=loginMember.getMemberId()%>(<%=loginMember.getMemberName()%>)님의 관리자 페이지</h1>
-		<div class="container row">
-			<div class="text-center bg-white rounded mx-4 px-4 section-title col">
+	<h1 class="container my-5 text-center text-white"><%=loginMember.getMemberId()%>(<%=loginMember.getMemberName()%>)님의 관리자 페이지</h1>
+		<div class="container row text-center mx-5">
+			<div class="container text-center bg-white rounded mx-4 px-4 section-title col">
 			<!-- 공지 -->
 			<span>Latest Notice</span>
 			<h2>Latest Notice</h2>
@@ -96,7 +96,7 @@
 			</table>
 			</div>
 			<!-- 멤버 -->
-			<div class="text-center bg-white rounded mx-4 px-4 section-title col">
+			<div class="container mx-3 px-3 text-center bg-white rounded section-title col">
 			<span>Latest Member</span>
 			<h2>Latest Member</h2>
 			<table class="table table-bordered" style="background-color:rgb(235,235,250)">

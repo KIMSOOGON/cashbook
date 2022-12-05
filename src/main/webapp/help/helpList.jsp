@@ -24,24 +24,22 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	
-	<title>GooDee-HelpList</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
+	<title>GooDee-helpListAll-update</title>
 	
 	<!-- Favicons -->
-	<link href="assets/img/favicon.png" rel="icon">
-	<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 	
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	
 	<!-- Vendor CSS Files -->
-	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-	<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 	
 	<!-- Template Main CSS File -->
 	<link href="<%=request.getContextPath()%>/assets/css/style.css" rel="stylesheet">
@@ -49,17 +47,6 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	
-	<!-- =======================================================
-	* Template Name: Day - v4.9.1
-	* Template URL: https://bootstrapmade.com/day-multipurpose-html-template-for-free/
-	* Author: BootstrapMade.com
-	* License: https://bootstrapmade.com/license/
-	======================================================== -->
-	<style>
-	a {
-		text-decoration:none;
-	}
-	</style>
 </head>
 <body id="xMas">
 	<!-- 메뉴 partial jsp 구성 -->
@@ -67,52 +54,64 @@
 		<jsp:include page="../inc/helpMenu.jsp"></jsp:include>
 	</div>
 	
-	<h1>고객센터</h1>
-	<h3>-<%=memberId%>님의 문의내역-</h3>
-	<table border="1">
-		<tr>
-			<td colspan="3">[문의사항]</td>
-			<td colspan="2">[답변내역]</td>
-		</tr>
-		<tr>
-			<!-- 문의란 -->
-			<th>Q no.</th>
-			<th>문의내용</th>
-			<th>작성날짜</th>
-			<!-- 답변란 -->
-			<th>답변내용</th>
-			<th>작성날짜</th>
-		</tr>
-		<%
-			for(HashMap<String,Object> h : list){
-		%>
-				<tr>
-					<td><%=h.get("helpNo")%></td>
-					<td><%=h.get("helpMemo")%></td>
-					<td><%=h.get("helpCreatedate")%></td>
-					<%
-						if(h.get("commentMemo")==null){
-					%>
-							<td>(답변 준비중입니다)</td>
-							<td>
-								<a href="<%=request.getContextPath()%>/help/updateHelpListForm.jsp?helpNo=<%=h.get("helpNo")%>">수정</a>
-								<a href="<%=request.getContextPath()%>/help/deleteHelpListAction.jsp?helpNo=<%=h.get("helpNo")%>">삭제</a>	
-							</td>
-					<%
-						} else {
-					%>
-							<td><%=h.get("commentMemo")%></td>
-							<td><%=h.get("commCreatedate")%></td>
-					<%
-						}
-					%>
-				</tr>
-		<%
-			}
-		%>
-	</table>
-	<div>
-		<a href="<%=request.getContextPath()%>/help/insertHelpListForm.jsp">문의하기</a>
+	<!-- helpList -->
+	<section id="pricing" class="pricing">
+		<div class="container">
+			<div class="section-title">
+				<span>HelpList</span>
+				<h1>HelpList</h1>
+				<p class="text-white">-<%=memberId%>님의 문의내역-</p>
+			</div>
+		</div>
+	</section>
+	
+	<div class="row box mx-4 rounded bg-light">
+		<table class="table table-hover shadow-lg table-bordered">
+			<tr class="text-center text-primary" style="background-color:rgb(240,235,250)">
+				<th colspan="3">문의사항</th>
+				<th colspan="2">답변내역</th>
+			</tr>
+			<tr>
+				<!-- 문의란 -->
+				<th>Q no.</th>
+				<th>문의내용</th>
+				<th>작성날짜</th>
+				<!-- 답변란 -->
+				<th>답변내용</th>
+				<th>작성날짜</th>
+			</tr>
+			<%
+				for(HashMap<String,Object> h : list){
+			%>
+					<tr>
+						<td><%=h.get("helpNo")%></td>
+						<td><%=h.get("helpMemo")%></td>
+						<td><%=h.get("helpCreatedate")%></td>
+						<%
+							if(h.get("commentMemo")==null){
+						%>
+								<td class="text-danger">(답변 준비중입니다)</td>
+								<td>
+									수정<a href="<%=request.getContextPath()%>/help/updateHelpListForm.jsp?helpNo=<%=h.get("helpNo")%>"><img src="<%=request.getContextPath()%>/assets/img/edit2.png" style="width:25px"></a>
+									 / 
+									삭제<a href="<%=request.getContextPath()%>/help/deleteHelpListAction.jsp?helpNo=<%=h.get("helpNo")%>"><img src="<%=request.getContextPath()%>/assets/img/delete3.png" style="width:25px"></a>	
+								</td>
+						<%
+							} else {
+						%>
+								<td><%=h.get("commentMemo")%></td>
+								<td><%=h.get("commCreatedate")%></td>
+						<%
+							}
+						%>
+					</tr>
+			<%
+				}
+			%>
+		</table>
+		<div class="text-center py-2">
+			<a href="<%=request.getContextPath()%>/help/insertHelpListForm.jsp" class="btn btn-lg btn-warning">ADD</a>
+		</div>
 	</div>
 </body>
 </html>

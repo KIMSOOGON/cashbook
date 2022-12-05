@@ -21,29 +21,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	
+	<title>GooDee-Admin-NoticeList-Update</title>
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	
+	<!-- Vendor CSS Files -->
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	
+	<!-- Template Main CSS File -->
+	<link href="<%=request.getContextPath()%>/assets/css/style.css" rel="stylesheet">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
-<body>
-	<h1>공지수정</h1>
-	<form action="<%=request.getContextPath()%>/admin/noticeListUpdateAction.jsp" method="post">
-		<div><input type="hidden" name="noticeNo" value="<%=noticeNo%>"></div>
-		<div>
-			<textarea rows="10" cols="300" name="noticeMemo"><%=noticeMemo%></textarea>
-		</div>
-		<div>
-			<button type="submit">수정</button>
-		</div>
-	</form>
+<body id="winter">
+	<!-- 메뉴 partial jsp 구성 -->
 	<div>
-		<%	// 공백 입력 시, 문구 출력
-			String msg = request.getParameter("msg");
-			if(msg!=null){
-		%>		
-				<%=msg%>	
-		<%		
-			}
-		%>
+		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
+	
+	<!-- Notice Update -->
+	<section id="pricing" class="pricing">
+		<div class="container shadow-lg">
+			<div class="section-title">
+				<span>Update Notice</span>
+				<h1>Update Notice</h1>
+				<p>[<%=noticeNo%>번] 공문 수정</p>
+			</div>
+		</div>
+	</section>
+	
+	<section id="contact" class="contact py-1">
+		<div class="container pt-5 col-lg-6 text-center bg-light">
+			<form action="<%=request.getContextPath()%>/admin/noticeListUpdateAction.jsp" method="post">
+				<div><input type="hidden" name="noticeNo" value="<%=noticeNo%>"></div>
+				<div>
+					<textarea rows="10" cols="70" name="noticeMemo"><%=noticeMemo%></textarea>
+				</div>
+				<div>
+					<button type="submit">수정</button>
+				</div>
+			</form>
+			<div>
+				<%	// 공백 입력 시, 문구 출력
+					String msg = request.getParameter("msg");
+					if(msg!=null){
+				%>		
+						<%=msg%>	
+				<%		
+					}
+				%>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

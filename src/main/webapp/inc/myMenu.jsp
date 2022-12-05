@@ -72,16 +72,16 @@
 	<!-- ======= Header ======= -->
 	<header id="header" class="d-flex align-items-center">
 		<div class="container d-flex align-items-center justify-content-between">        
-			<h1 class="logo"><a href="index.jsp">구디 가계부</a></h1>
+			<h1 class="logo"><a href="<%=request.getContextPath()%>/index.jsp">구디 가계부</a></h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       		<nav id="navbar" class="navbar">
 				<ul>
-					<li><a class="nav-link active" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
+					<li><a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
-					<li class="dropdown"><a href="<%=request.getContextPath()%>/myPage.jsp"><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
+					<li class="dropdown active"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
 						<ul>
 							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
 							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>

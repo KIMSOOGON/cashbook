@@ -28,19 +28,19 @@
 	<meta content="" name="keywords">
 	
 	<!-- Favicons -->
-	<link href="assets/img/favicon.png" rel="icon">
-	<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 	
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	
 	<!-- Vendor CSS Files -->
-	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-	<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 	
 	<!-- Template Main CSS File -->
 	<link href="<%=request.getContextPath()%>/assets/css/style.css" rel="stylesheet">
@@ -60,43 +60,60 @@
 	}
 	</style>
 </head>
-<body id="xmas">
+<body id="winter">
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
 	
-	<div>
-		<!-- categoryList Content -->
-		<h1>카테고리 목록</h1>
-		<a href="<%=request.getContextPath()%>/admin/categoryListInsertForm.jsp">카테고리 추가</a>
-		<table border="1">
-			<tr>
-				<th>번호</th>
-				<th>수입/지출</th>
-				<th>이름</th>
-				<th>최신수정날짜</th>
-				<th>생성날짜</th>
-				<th>수정</th>
-				<th>삭제</th>
-			</tr>
-			<!-- 모델데이터 categoryList 출력 -->
-			<%
-				for(Category c:categoryList){
-			%>
-					<tr>
-						<td><%=c.getCategoryNo()%></td>
-						<td><%=c.getCategoryKind()%></td>
-						<td><%=c.getCategoryName()%></td>
-						<td><%=c.getUpdatedate()%></td>
-						<td><%=c.getCreatedate()%></td>
-						<td><a href="<%=request.getContextPath()%>/admin/categoryListUpdateForm.jsp?categoryNo=<%=c.getCategoryNo()%>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/admin/categoryListDeleteAction.jsp?categoryNo=<%=c.getCategoryNo()%>">삭제</a></td>
-					</tr>			
-			<%
-				}
-			%>
-		</table>
-	</div>
+	<!-- categoryList Content -->
+	<section id="pricing" class="pricing">
+		<div class="container shadow-lg">
+			
+			<div class="section-title">
+				<span>Category Management</span>
+				<h1>Category Management</h1>
+				<p>카테고리 추가,수정,삭제</p>
+			</div>
+			
+			<div>
+				<div class="text-center my-3">
+					<a href="<%=request.getContextPath()%>/admin/categoryListInsertForm.jsp" class="btn btn-warning font-weight-bold">ADD Category</a>
+				</div>
+				<table class="container shadow table text-center relative w-75 bg-light table-hover table-bordered rounded">
+					<thead class="text-primary">
+						<tr>
+							<th>번호</th>
+							<th>수입(+)/지출(-)</th>
+							<th>상세</th>
+							<th>update</th>
+							<th>create</th>
+							<th>Edit <img src="<%=request.getContextPath()%>/assets/img/edit.png" style="width:25px"></th>
+							<th>Delete <img src="<%=request.getContextPath()%>/assets/img/delete2.png" style="width:25px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 모델데이터 categoryList 출력 -->
+						<%
+							for(Category c:categoryList){
+						%>
+								<tr>
+									<td><%=c.getCategoryNo()%></td>
+									<td><%=c.getCategoryKind()%></td>
+									<td><%=c.getCategoryName()%></td>
+									<td><%=c.getUpdatedate()%></td>
+									<td><%=c.getCreatedate()%></td>
+									<td><a href="<%=request.getContextPath()%>/admin/categoryListUpdateForm.jsp?categoryNo=<%=c.getCategoryNo()%>" class="btn btn-sm btn-dark">수정</a></td>
+									<td><a href="<%=request.getContextPath()%>/admin/categoryListDeleteAction.jsp?categoryNo=<%=c.getCategoryNo()%>" class="btn btn-sm btn-dark">삭제</a></td>
+								</tr>			
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</section>
 </body>
 </html>

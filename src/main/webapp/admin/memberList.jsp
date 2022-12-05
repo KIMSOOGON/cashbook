@@ -68,26 +68,31 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
-	#Calendar {
-		font-size:30px;
-		font-weight:bold;
-	}
 	a {
 		text-decoration:none;
 	}
 	</style>
 </head>
-<body>
+<body id="winter">
 		<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
 	
-	<div>
-		<!-- memberList Content -->
-		<h1>멤버목록</h1>
-		<table border="1">
-			<tr>
+	<!-- memberList Content -->
+	<section id="pricing" class="pricing">
+		<div class="container shadow-lg">
+			<div class="section-title">
+				<span>Member Management</span>
+				<h1>Member Management</h1>
+				<p>구디가계부 회원 승급/강등/강제탈퇴</p>
+			</div>
+		</div>
+	</section>
+	
+	<div class="container shadow">
+		<table class="container table table-hover bg-light text-center rounded">
+			<tr class="text-primary">
 				<th>멤버변호</th>
 				<th>아이디</th>
 				<th>레벨</th>
@@ -115,34 +120,36 @@
 									<option value="0">일반회원(0)</option>
 									<option value="1">관리자(1)</option>
 								</select>
-								<button type="submit">수정</button>
+								<button type="submit" class="btn btn-sm btn-dark">수정</button>
 							</form>
 						</td>
-						<td><a href="<%=request.getContextPath()%>/admin/memberListDeleteAction.jsp?memberNo=<%=m.getMemberNo()%>">OUT</a></td>
+						<td><a href="<%=request.getContextPath()%>/admin/memberListDeleteAction.jsp?memberNo=<%=m.getMemberNo()%>" class="btn btn-sm btn-dark">BAN</a></td>
 					</tr>
 			<%		
 				}
 			%>
 		</table>
 		<!-- 페이징 -->
-		<div>
-			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1">처음</a>
-			<%
-				if(currentPage>1){
-			%>
-					<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>">이전</a>
-			<%
-				}
-			%>
-			<span><%=currentPage%></span>
-			<%
-				if(currentPage<lastPage){
-			%>
-					<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>">다음</a>
-			<%
-				}
-			%>
-			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>">끝</a>
+		<div class="container text-center">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1">처음</a></li>
+				<%
+					if(currentPage>1){
+				%>
+					<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>">이전</a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><span class="page-link text-warning bg-dark"><%=currentPage%></span></li>
+				<%
+					if(currentPage<lastPage){
+				%>
+						<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>">다음</a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>">끝</a></li>
+			</ul>
 		</div>
 	</div>
 </body>

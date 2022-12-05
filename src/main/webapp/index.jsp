@@ -38,8 +38,6 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	
 	<title>GooDee-financial ledger-home</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
 	
 	<!-- Favicons -->
 	<link href="assets/img/favicon.png" rel="icon">
@@ -87,14 +85,17 @@
     <div class="container position-relative text-center" data-aos="fade-up" data-aos-delay="500">
     <div class="card shadow mb-4" style="background-color:rgb(30,30,30)">
       <div class="card-header py-3">
-	      <h3 class="m-0 font-weight-bold text-primary">Offical Notice</h3>
+	      <h3 class="m-0 font-weight-bold text-white">Offical Notice</h3>
 	      <div class="card-body">
 	      	<div class="table-responsive">
-	     	 <table class="container table table-bordered bg-white" id="dataTable">
+	     	 <table class="container table table-bordered bg-white w-75" id="dataTable">
+				<thead class="text-primary">
 				<tr>
 					<th>NOTICE</th>
 					<th>DATE</th>
 				</tr>
+				</thead>
+				<tbody>
 				<%
 					for(Notice n : list){
 				%>		
@@ -105,6 +106,7 @@
 				<%		
 					}
 				%>
+				</tbody>
 			</table>
 			</div>
 			<div class="text-center text-secondary">

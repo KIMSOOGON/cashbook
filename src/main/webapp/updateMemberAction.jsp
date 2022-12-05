@@ -4,6 +4,8 @@
 <%@ page import="java.net.URLEncoder"%>
 <%
 	// 1 Controller
+	request.setCharacterEncoding("utf-8");
+
 	//session에 저장된 멤버(현재 로그인 사용자) 
 	Member loginMember = (Member)session.getAttribute("loginMember");
 
@@ -41,7 +43,8 @@
 	if(!newMemberPw.equals(newMemberPwCheck)){
 		System.out.println("새 비밀번호가 일치하지 않습니다.");
 		String ckMsg = URLEncoder.encode("새 비밀번호가 일치하지 않습니다","utf-8");
-		response.sendRedirect(request.getContextPath()+tgtUrl);
+		response.sendRedirect(request.getContextPath()+tgtUrl+"?ckMsg="+ckMsg);
+		return;
 	} 
 	
 	// 2 Model

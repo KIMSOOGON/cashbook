@@ -46,12 +46,6 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	
 	<title>GooDee-Admin-NoticeList</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
-	
-	<!-- Favicons -->
-	<link href="../assets/img/favicon.png" rel="icon">
-	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 	
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -70,27 +64,34 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
-	#Calendar {
-		font-size:30px;
-		font-weight:bold;
-	}
 	a {
 		text-decoration:none;
 	}
 	</style>
 </head>
-<body>
-		<!-- 메뉴 partial jsp 구성 -->
+<body id="winter">
+	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
 	
-	<div>
-		<!-- noticeList Content -->
-		<h1>공지관리</h1>
-		<a href="<%=request.getContextPath()%>/admin/noticeListInsertForm.jsp">공지입력</a>
-		<table border="1">
-			<tr>
+	<!-- memberList Content -->
+	<section id="pricing" class="pricing">
+		<div class="container shadow-lg">
+			<div class="section-title">
+				<span>Notice Management</span>
+				<h1>Notice Management</h1>
+				<p>공문 관리 (수정/추가/삭제)</p>
+			</div>
+		</div>
+	</section>
+	
+	<div class="container shadow">
+		<div class="text-center my-3">
+			<a href="<%=request.getContextPath()%>/admin/noticeListInsertForm.jsp" class="btn btn-warning font-weight-bold">ADD Notice</a>
+		</div>
+		<table class="container table table-hover bg-light text-center rounded">
+			<tr class="text-primary">
 				<th>번호</th>
 				<th>공지내용</th>
 				<th>공지날짜</th>
@@ -104,32 +105,34 @@
 					<td><%=n.getNoticeNo()%></td>
 					<td><%=n.getNoticeMemo()%></td>
 					<td><%=n.getCreatedate()%></td>
-					<td><a href="<%=request.getContextPath()%>/admin/noticeListUpdateForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>">수정</a></td>
-					<td><a href="<%=request.getContextPath()%>/admin/noticeListDeleteAction.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
+					<td><a href="<%=request.getContextPath()%>/admin/noticeListUpdateForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>" class="btn btn-sm btn-dark">수정</a></td>
+					<td><a href="<%=request.getContextPath()%>/admin/noticeListDeleteAction.jsp?noticeNo=<%=n.getNoticeNo()%>" class="btn btn-sm btn-dark">삭제</a></td>
 				</tr>	
 			<%		
 				}
 			%>
 		</table>
 		<!-- 페이징 -->
-		<div>
-			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
-			<%
-				if(currentPage>1){
-			%>
-					<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">이전</a>
-			<%
-				}
-			%>
-			<span><%=currentPage%></span>
-			<%
-				if(currentPage<lastPage){
-			%>
-					<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage+1%>">다음</a>
-			<%
-				}
-			%>
-			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">끝</a>
+		<div class="container text-center">
+			<ul class="pagination justify-content-center">
+					<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a></li>
+				<%
+					if(currentPage>1){
+				%>
+							<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">이전</a></li>
+				<%
+					}
+				%>
+					<li class="page-item"><span class="page-link text-warning bg-dark"><%=currentPage%></span>
+				<%
+					if(currentPage<lastPage){
+				%>
+							<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage+1%>">다음</a></li>
+				<%
+					}
+				%>
+					<li class="page-item"><a class="page-link bg-secondary text-light" href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">끝</a></li>
+			</ul>
 		</div>
 	</div>
 </body>

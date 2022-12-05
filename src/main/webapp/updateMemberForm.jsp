@@ -15,13 +15,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	
 	<title>GooDee-MyPage</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
-	
+
 	<!-- Favicons -->
 	<link href="<%=request.getContextPath()%>/assets/img/favicon.png" rel="icon">
 	<link href="<%=request.getContextPath()%>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -42,123 +40,70 @@
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-	<style>
-	#Calendar {
-		font-size:30px;
-		font-weight:bold;
-	}
-	a {
-		text-decoration:none;
-	}
-	</style>
+
 </head>
-<body id="winter">
+<body id="ice">
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="inc/myMenu.jsp"></jsp:include>
+	</div>
 	
-	<!-- ======= Top Bar ======= -->
-	<section id="topbar" class="d-flex align-items-center">
-		<div class="container d-flex justify-content-center justify-content-md-between">
-			<div class="contact-info d-flex align-items-center">
-				<i class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">oasis0530@naver.com</a>
-				<i class="bi bi-phone-fill phone-icon"></i> +82 010 2973 0973
-			</div>
-			<div class="social-links d-none d-md-block">
-				<%
-					if(session.getAttribute("loginMember") == null){ // 로그인 되어있지 않을 때, LOG-IN 출력
-				%>
-						<a href="<%=request.getContextPath()%>/loginForm.jsp" class="text-warning">LOG-IN</a>
-				<%
-					} else { // 로그인 되어있는 경우, LOG-OUT 출력
-				%>
-						<%=loginMember.getMemberId()%>님
-						<a href="<%=request.getContextPath()%>/logout.jsp" class="text-warning">LOG-OUT</a>
-				<%
-					}
-				%>
-				<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-				<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-				<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-				<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+	<!-- helpList Insert -->
+	<section id="pricing" class="pricing">
+		<div class="container">
+			<div class="section-title">
+				<span>Edit My Info</span>
+				<h1>Edit My Info</h1>
+				<p>내 정보 수정 (이름 및 비밀번호)</p>
 			</div>
 		</div>
 	</section>
 	
-	<!-- ======= Header ======= -->
-	<header id="header" class="d-flex align-items-center">
-		<div class="container d-flex align-items-center justify-content-between">        
-			<h1 class="logo"><a href="<%=request.getContextPath()%>/index.jsp">구디 가계부</a></h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      		<nav id="navbar" class="navbar">
-				<ul>
-					<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
-					<li><a class="nav-link scrollto active" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
-					<li><a class="nav-link scrollto " href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
-					<li class="dropdown"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
-						<ul>
-							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
-							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
-						</ul>
-					</li>
-					<%
-						if(loginMember.getMemberLevel() == 1){ // 관리자로 로그인 시에만 출력
-					%>
-					<li class="dropdown"><a href="<%=request.getContextPath()%>/admin/adminMain.jsp"><span class="text-danger">관리자모드</span> <i class="bi bi-chevron-down"></i></a>
-						<ul>
-							<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice Management</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category Management</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">Member Management</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">Customer Service Management</a></li>
-						</ul>
-					</li>
-					<%
-						}
-					%>
-					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
-			</nav><!-- .navbar -->
-		</div>
-	</header><!-- End Header -->
-
-	<h1>회원정보수정</h1>
-	<hr>
-	<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
-		<div>
-			<%	// 빈항목 제출 시, 문구출력
-				String msg = request.getParameter("msg");
-				if(msg!=null){
-			%>		
-					<%=msg%>					
-			<%		
-				}
-			%>
-		</div>
-		<table border="1">
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" name="memberId" value="<%=loginMember.getMemberId()%>" readonly="readonly"></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="memberPw"></td>
-			</tr>
-			<tr>
-				<th>새 비밀번호</th>
-				<td><input type="password" name="newMemberPw"></td>
-			</tr>
-			<tr>
-				<th>새 비밀번호 확인</th>
-				<td><input type="password" name="newMemberPwCheck"></td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><input type="text" name="memberName" value="<%=loginMember.getMemberName()%>"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><button type="submit">수정</button></td>
-			</tr>
-		</table>
-	</form>
+	<div class="container text-center bg-light w-75">
+		<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
+			<div>
+				<%	// 빈항목 제출 시, 문구출력
+					String msg = request.getParameter("msg");
+					if(msg!=null){
+				%>		
+						<%=msg%>					
+				<%		
+					}
+					// 비밀번호 확인 일치여부, 문구출력
+					String ckMsg = request.getParameter("ckMsg");
+					if(ckMsg!=null){
+				%>		
+						<%=ckMsg%>					
+				<%		
+					}
+				%>
+			</div>
+			<table class="table table-hover">
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="memberId" value="<%=loginMember.getMemberId()%>" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="memberPw"></td>
+				</tr>
+				<tr>
+					<th>새 비밀번호</th>
+					<td><input type="password" name="newMemberPw"></td>
+				</tr>
+				<tr>
+					<th>새 비밀번호 확인</th>
+					<td><input type="password" name="newMemberPwCheck"></td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td><input type="text" name="memberName" value="<%=loginMember.getMemberName()%>"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit" class="btn btn-lg btn-danger">수정</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>

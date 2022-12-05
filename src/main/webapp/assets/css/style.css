@@ -1461,6 +1461,14 @@ section {
 	position: relative;
 }
 
+#ice {
+	width: 100%;
+	height: calc(100vh - 110px);
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../img/ice.jpg") top center;
+	background-size: cover;
+	position: relative;
+}
+
 #snow {
 	width: 100%;
 	height: calc(100vh - 110px);

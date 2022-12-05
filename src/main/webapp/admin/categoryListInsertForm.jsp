@@ -11,32 +11,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	
+	<title>GooDee-CategoryList-insert</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	
+	<!-- Favicons -->
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	
+	<!-- Vendor CSS Files -->
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	
+	<!-- Template Main CSS File -->
+	<link href="<%=request.getContextPath()%>/assets/css/style.css" rel="stylesheet">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	
 </head>
-<body>
-	<h1>[카테고리 추가]</h1>
-	<form action = "<%=request.getContextPath()%>/admin/categoryListInsertAction.jsp" method="post">
-		<!--  -->
-		<div>categoryKind
-			<input type="radio" name="categoryKind" value="수입">수입
-			<input type="radio" name="categoryKind" value="지출">지출
+<body id="winter">
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
+	</div>
+	
+	<!-- categoryList Insert -->
+	<section id="pricing" class="pricing">
+		<div class="container">
+			<div class="section-title">
+				<span>ADD Category</span>
+				<h1>ADD Category</h1>
+				<p>카테고리 추가</p>
+			</div>
 		</div>
-		<div>
-			categoryName
-			<input type="text" name="categoryName">
-			<%	// 공백 입력 시, 문장 출력 "카테고리 이름을 입력하세요"
-				String msg = request.getParameter("msg");
-				if(msg!=null){
-			%>		
-					<%=msg%>	
-			<%		
-				}
-			%>
+	</section>
+	
+	<!-- category 입력 폼 -->
+	<section id="contact" class="contact py-1">
+		<div class="container pt-5 col-lg-6 text-center bg-light">
+			<form action="<%=request.getContextPath()%>/admin/categoryListInsertAction.jsp" method="post" role="form" class="php-email-form">
+				<div>
+					<div class="form-group mt-3 row">
+						<div class="col">categoryKind</div>
+						<div class="col">
+							<input type="radio" name="categoryKind" value="수입">수입
+							<input type="radio" name="categoryKind" value="지출">지출
+						</div>
+					</div>
+					<div class="form-group mt-3 row">
+						<div class="col">categoryName</div>
+						<div class="col">
+							<input type="text" name="categoryName">
+							<%	// 공백 입력 시, 문장 출력 "카테고리 이름을 입력하세요"
+								String msg = request.getParameter("msg");
+								if(msg!=null){
+							%>		
+									<%=msg%>	
+							<%		
+								}
+							%>
+						</div>
+					</div>
+				</div>
+				<div class="text-center mt-5"><button type="submit">ADD</button></div>
+			</form>
 		</div>
-		<div>
-			<button type="submit">등록</button> 
-		</div>
-	</form>
+	</section>
 </body>
 </html>
