@@ -61,8 +61,8 @@
 		</div>
 	</section>
 	
-	<div class="container text-center">
-		<div class="position-absolute box text-center bg-light shadow row">
+	<div class="container text-center w-75">
+		<div class="box text-center bg-light shadow row">
 			<div class="col-6 p-2">이름</div>
 			<div class="col-6 p-2"><%=loginMember.getMemberName()%></div>
 			<div class="col-6 p-2">권한</div>

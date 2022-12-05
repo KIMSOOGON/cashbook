@@ -8,7 +8,7 @@ import vo.Category;
 public class CategoryDao {
 	
 	// admin -> 카테고리 수정액션 (호출 : categoryListUpdateAction.jsp)
-	public int updateCategoryName(Category category) throws Exception {
+	public int updateCategoryName(Category category) {
 		int row = 0;
 		
 		String sql = "UPDATE category"
@@ -20,19 +20,27 @@ public class CategoryDao {
 		PreparedStatement stmt = null;
 		
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, category.getCategoryName());
-		stmt.setString(2, category.getCategoryKind());
-		stmt.setInt(3, category.getCategoryNo());
-		
-		row = stmt.executeUpdate();
-		
-		dbUtil.close(null, stmt, conn);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, category.getCategoryName());
+			stmt.setString(2, category.getCategoryKind());
+			stmt.setInt(3, category.getCategoryNo());
+			
+			row = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return row;
 	}
 	
 	// admin -> 카테고리 수정폼 (호출 : categoryListUpdateForm.jsp)
-	public Category selectCategoryOne(int categoryNo) throws Exception {
+	public Category selectCategoryOne(int categoryNo) {
 		Category category = null;
 		
 		String sql = "SELECT category_no categoryNo, category_name categoryName, category_kind categoryKind"
@@ -45,23 +53,32 @@ public class CategoryDao {
 		ResultSet rs = null;
 		
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, categoryNo);
-		
-		rs = stmt.executeQuery();
-		
-		if(rs.next()) {
-			category = new Category();
-			category.setCategoryNo(rs.getInt("categoryNo"));
-			category.setCategoryName(rs.getString("categoryName"));
-			category.setCategoryKind(rs.getString("categoryKind"));
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, categoryNo);
+			
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				category = new Category();
+				category.setCategoryNo(rs.getInt("categoryNo"));
+				category.setCategoryName(rs.getString("categoryName"));
+				category.setCategoryKind(rs.getString("categoryKind"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		dbUtil.close(rs, stmt, conn);
 		return category;
 	}
 	
 	// admin -> 카테고리삭제 (호출 : categoryListDeleteAction.jsp)
-	public int deleteCategory(int categoryNo) throws Exception {
+	public int deleteCategory(int categoryNo) {
 		int row = 0;
 		
 		String sql = "DELETE FROM category WHERE category_no = ?";
@@ -72,16 +89,24 @@ public class CategoryDao {
 		PreparedStatement stmt = null;
 		
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, categoryNo);
-		row = stmt.executeUpdate();
-		
-		dbUtil.close(null, stmt, conn);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, categoryNo);
+			row = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return row;
 	}
 	
 	// admin -> 카테고리추가 (호출 : categoryListInsertAction.jsp)
-	public int insertCategory(Category category) throws Exception {
+	public int insertCategory(Category category) {
 		int insertRow = 0;
 		
 		String sql = "INSERT INTO category ("
@@ -96,17 +121,25 @@ public class CategoryDao {
 		PreparedStatement stmt = null;
 		
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, category.getCategoryKind());
-		stmt.setString(2, category.getCategoryName());
-		insertRow = stmt.executeUpdate();
-		
-		dbUtil.close(null, stmt, conn);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, category.getCategoryKind());
+			stmt.setString(2, category.getCategoryName());
+			insertRow = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return insertRow;
 	}
 	
 	// admin -> 카테고리관리 -> 카테고리목록 불러오기 (호출 : categoryList.jsp)
-	public ArrayList<Category> selectCategoryListByAdmin() throws Exception{
+	public ArrayList<Category> selectCategoryListByAdmin() {
 		ArrayList<Category> categoryList = null;
 		categoryList = new ArrayList<Category>();
 		
@@ -127,21 +160,27 @@ public class CategoryDao {
 		ResultSet rs = null;
 		
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		rs = stmt.executeQuery();
-		while(rs.next()) {
-			Category c = new Category();
-			c.setCategoryNo(rs.getInt("categoryNo")); // rs.getInt(1); 1 - 셀렉트 절의 순서
-			c.setCategoryName(rs.getString("categoryName"));
-			c.setCategoryKind(rs.getString("categoryKind"));
-			c.setUpdatedate(rs.getString("updatedate")); // db날짜 타입이지만 자바에선 문자열 타입
-			c.setCreatedate(rs.getString("createdate"));
-			categoryList.add(c);
-		}
-		
-		// db자원 반납
-		dbUtil.close(rs, stmt, conn);
-		
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Category c = new Category();
+				c.setCategoryNo(rs.getInt("categoryNo")); // rs.getInt(1); 1 - 셀렉트 절의 순서
+				c.setCategoryName(rs.getString("categoryName"));
+				c.setCategoryKind(rs.getString("categoryKind"));
+				c.setUpdatedate(rs.getString("updatedate")); // db날짜 타입이지만 자바에선 문자열 타입
+				c.setCreatedate(rs.getString("createdate"));
+				categoryList.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
 		return categoryList;
 	}
 	

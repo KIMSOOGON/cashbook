@@ -81,7 +81,7 @@
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
 					<li><a class="nav-link active" href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
-					<li class="dropdown"><a href=""><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
+					<li class="dropdown"><a href="<%=request.getContextPath()%>/myPage.jsp"><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
 						<ul>
 							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/updateMemberForm.jsp">내 정보수정</a></li>
 							<li><a class="nav-link scrollto" href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원탈퇴</a></li>
