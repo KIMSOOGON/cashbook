@@ -8,7 +8,7 @@ import java.sql.*;
 public class HelpDao {
 	
 	// 관리자 고객센터목록 총 개수 (호출 : helpListAll.jsp)
-	public int countHelp() throws Exception {
+	public int countHelp() {
 		int countHelp = 0;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = null;
@@ -17,18 +17,26 @@ public class HelpDao {
 		
 		String sql = "SELECT COUNT(*) FROM help";
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		rs = stmt.executeQuery();
-		if(rs.next()) {
-			countHelp = rs.getInt("COUNT(*)");
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				countHelp = rs.getInt("COUNT(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		dbUtil.close(rs, stmt, conn);
 		return countHelp;
 	}
 	
 	// 관리자 고객센터목록 selectHelpList 오버로딩 (호출 : helpListAll.jsp)
-	public ArrayList<HashMap<String,Object>> selectHelpList(int beginRow, int rowPerPage) throws Exception{
+	public ArrayList<HashMap<String,Object>> selectHelpList(int beginRow, int rowPerPage) {
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -49,28 +57,36 @@ public class HelpDao {
 		
 		DBUtil dbUtil = new DBUtil();
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, beginRow);
-		stmt.setInt(2, rowPerPage);
-		rs = stmt.executeQuery();
-		
-		while(rs.next()) {
-			HashMap<String,Object> h = new HashMap<String,Object>();
-			h.put("helpNo", rs.getInt("helpNo"));
-			h.put("helpMemo", rs.getString("helpMemo"));
-			h.put("memberId", rs.getString("memberId"));
-			h.put("helpCreatedate", rs.getString("helpCreatedate"));
-			h.put("commentMemo", rs.getString("commentMemo"));
-			h.put("commCreatedate", rs.getString("commCreatedate"));
-			list.add(h);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				HashMap<String,Object> h = new HashMap<String,Object>();
+				h.put("helpNo", rs.getInt("helpNo"));
+				h.put("helpMemo", rs.getString("helpMemo"));
+				h.put("memberId", rs.getString("memberId"));
+				h.put("helpCreatedate", rs.getString("helpCreatedate"));
+				h.put("commentMemo", rs.getString("commentMemo"));
+				h.put("commCreatedate", rs.getString("commCreatedate"));
+				list.add(h);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		dbUtil.close(rs, stmt, conn);
 		return list;
 	}
 	
 	// 고객센터 목록 select (호출 : helpList.jsp)
-	public ArrayList<HashMap<String,Object>> selectHelpList(String memberId) throws Exception{
+	public ArrayList<HashMap<String,Object>> selectHelpList(String memberId) {
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -100,24 +116,33 @@ public class HelpDao {
 		
 		DBUtil dbUtil = new DBUtil();
 		conn = dbUtil.getConnection();
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, memberId);
-		rs = stmt.executeQuery();
-		while(rs.next()) {
-			HashMap<String,Object> h = new HashMap<String,Object>();
-			h.put("helpNo", rs.getInt("helpNo"));
-			h.put("helpMemo", rs.getString("helpMemo"));
-			h.put("helpCreatedate", rs.getString("helpCreatedate"));
-			h.put("commentMemo", rs.getString("commentMemo"));
-			h.put("commCreatedate", rs.getString("commCreatedate"));
-			list.add(h);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, memberId);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				HashMap<String,Object> h = new HashMap<String,Object>();
+				h.put("helpNo", rs.getInt("helpNo"));
+				h.put("helpMemo", rs.getString("helpMemo"));
+				h.put("helpCreatedate", rs.getString("helpCreatedate"));
+				h.put("commentMemo", rs.getString("commentMemo"));
+				h.put("commCreatedate", rs.getString("commCreatedate"));
+				list.add(h);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		dbUtil.close(rs, stmt, conn);
 		return list;
 	}
 	
 	// HelpList 문의등록insert (호출 : insertHelpListAction.jsp)
-	public int insertHelp(Help help)throws Exception{
+	public int insertHelp(Help help) {
 		int insertRow = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -134,17 +159,25 @@ public class HelpDao {
 		String sql = "INSERT INTO help("
 					+"help_memo,member_id,updatedate,createdate"
 					+")VALUES(?,?,NOW(),NOW())";
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, help.getHelpMemo());
-		stmt.setString(2, help.getMemberId());
-		insertRow = stmt.executeUpdate();
-		
-		dbUtil.close(null, stmt, conn);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, help.getHelpMemo());
+			stmt.setString(2, help.getMemberId());
+			insertRow = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return insertRow;
 	}
 	
 	// 하나의 문의내용 불러오기 select (호출 : updateHelpListForm.jsp)
-	public Help oneHelp(Help paramHelp) throws Exception{
+	public Help oneHelp(Help paramHelp) {
 		Help oneHelp = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -159,22 +192,31 @@ public class HelpDao {
 					+ ", createdate"
 					+ " FROM help"
 					+ " WHERE help_no = ?";
-		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, paramHelp.getHelpNo());
-		rs = stmt.executeQuery();
-		
-		if(rs.next()) {
-			oneHelp = new Help();
-			oneHelp.setHelpMemo(rs.getString("helpMemo"));
-			oneHelp.setMemberId(rs.getString("memberId"));
-			oneHelp.setCreatedate(rs.getString("createdate"));
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, paramHelp.getHelpNo());
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				oneHelp = new Help();
+				oneHelp.setHelpMemo(rs.getString("helpMemo"));
+				oneHelp.setMemberId(rs.getString("memberId"));
+				oneHelp.setCreatedate(rs.getString("createdate"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		dbUtil.close(rs, stmt, conn);
 		return oneHelp;
 	}
 	
 	// 문의수정하기 update (호출 : updateHelpListAction.jsp)
-	public int updateHelp(Help help) throws Exception {
+	public int updateHelp(Help help) {
 		int updateRow = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -183,17 +225,25 @@ public class HelpDao {
 		conn = dbUtil.getConnection();
 		
 		String sql = "UPDATE help SET help_memo = ? WHERE help_no = ?";
-		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, help.getHelpMemo());
-		stmt.setInt(2, help.getHelpNo());
-		updateRow = stmt.executeUpdate();
-		
-		dbUtil.close(null, stmt, conn);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, help.getHelpMemo());
+			stmt.setInt(2, help.getHelpNo());
+			updateRow = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return updateRow;
 	}
 	
 	// 문의삭제하기 delete (호출 : deleteHelpListAction.jsp)
-	public int deleteHelp(Help help) throws Exception{
+	public int deleteHelp(Help help) {
 		int deleteRow = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -202,11 +252,19 @@ public class HelpDao {
 		conn = dbUtil.getConnection();
 		
 		String sql = "DELETE FROM help WHERE help_no = ?";
-		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, help.getHelpNo());
-		deleteRow = stmt.executeUpdate();
-		
-		dbUtil.close(null, stmt, conn);
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, help.getHelpNo());
+			deleteRow = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return deleteRow;
 	}
 }

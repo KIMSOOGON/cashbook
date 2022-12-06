@@ -185,24 +185,34 @@ public class CategoryDao {
 	}
 	
 	// cash 입력시 (호출 : cashDateList.jsp)
-	public ArrayList<Category> selectCategoryList() throws Exception{
+	public ArrayList<Category> selectCategoryList() {
 		ArrayList<Category> categoryList = new ArrayList<Category>();
 		
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
 		String sql = "SELECT category_no categoryNo, category_name categoryName, category_kind categoryKind FROM category ORDER BY category_kind ASC";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		ResultSet rs = stmt.executeQuery();
-		
-		while(rs.next()) {
-			Category c = new Category();
-			c.setCategoryNo(rs.getInt("categoryNo"));
-			c.setCategoryName(rs.getString("categoryName"));
-			c.setCategoryKind(rs.getString("categoryKind"));
-			categoryList.add(c);
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Category c = new Category();
+				c.setCategoryNo(rs.getInt("categoryNo"));
+				c.setCategoryName(rs.getString("categoryName"));
+				c.setCategoryKind(rs.getString("categoryKind"));
+				categoryList.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				dbUtil.close(null, stmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		// ORDER BY kind
 		return categoryList;
 	}
 }

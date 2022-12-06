@@ -18,15 +18,27 @@ public class DBUtil {
 		return conn;
 	}
 	
-	public void close(ResultSet rs, PreparedStatement stmt, Connection conn) throws Exception{
+	public void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
 		if(rs != null) {
-			rs.close();
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		if(stmt != null) {
-			stmt.close();
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		if(conn != null) {
-			conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
