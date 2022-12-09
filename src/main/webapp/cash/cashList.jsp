@@ -86,15 +86,20 @@
 		text-decoration:none;
 	}
 	</style>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"> 
 </head>
 <body id="snow">
+
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script> 
+	
 		<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/cashMenu.jsp"></jsp:include>
 	</div>
 	
   	<!-- ======= Services Section ======= -->
-	<section id="services" class="services">
+	<section id="services" class="services" data-aos="fade-up" data-aos-delay="500">
 		<div class="container">
 			<div class="section-title">
 				<span>Financial ledger Calendar</span>

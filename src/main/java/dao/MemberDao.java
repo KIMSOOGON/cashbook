@@ -141,7 +141,8 @@ public class MemberDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement(sql);stmt.setString(1, paramMember.getMemberId()); // 매개변수(paramMember)로 들어온 id
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, paramMember.getMemberId()); // 매개변수(paramMember)로 들어온 id
 			stmt.setString(2, paramMember.getMemberPw()); // 매개변수로 들어온 pw
 			rs = stmt.executeQuery();
 			if(rs.next()) { // id와 pw 일치한 경우 리턴값 returnMember

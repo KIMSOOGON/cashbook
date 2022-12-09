@@ -52,16 +52,19 @@
 		text-decoration:none;
 	}
 	</style>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body id="snow">
-
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script> 
+	
 		<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/cashMenu.jsp"></jsp:include>
 	</div>
 	
 	<!-- Services Section 상세페이지 -->
-	<section id="services" class="services">
+	<section id="services" class="services" data-aos="fade-up" data-aos-delay="500">
 		<div class="container">
 			<div class="section-title">
 				<span>Financial Ledger Detail</span>
@@ -103,7 +106,7 @@
 	</section>
 			
 	<!-- cash 입력 폼 -->
-	<section id="contact" class="contact py-1">
+	<section id="contact" class="contact py-1" data-aos="fade-up" data-aos-delay="500">
 		<div class="container pt-5 col-lg-6 text-center">
 		<h3 class="text-secondary">가계부 추가</h3>
 		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post" role="form" class="php-email-form">
