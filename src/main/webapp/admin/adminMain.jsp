@@ -25,6 +25,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	
@@ -51,15 +52,18 @@
 		text-decoration:none;
 	}
 	</style>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body id="winter">
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script> 
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
 	
 	<!-- adminMain Content -->
-	<section id="team" class="team">
+	<section id="team" class="team" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 	<h1 class="container my-5 text-center text-white"><%=loginMember.getMemberId()%>(<%=loginMember.getMemberName()%>)님의 관리자 페이지</h1>
 		<div class="container row text-center mx-5">
 			<div class="container text-center bg-white rounded mx-4 px-4 section-title col">
@@ -86,7 +90,7 @@
 			</table>
 			</div>
 			<!-- 멤버 -->
-			<div class="container mx-3 px-3 text-center bg-white rounded section-title col">
+			<div class="container mx-3 px-3 text-center bg-white rounded section-title col" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 			<span>Latest Member</span>
 			<h2>Latest Member</h2>
 			<table class="table table-bordered" style="background-color:rgb(235,235,250)">

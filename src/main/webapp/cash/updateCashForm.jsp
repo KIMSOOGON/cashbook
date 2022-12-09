@@ -62,17 +62,21 @@
 		text-decoration:none;
 	}
 	</style>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body id="snow">
-		
+
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script>
+	 
 		<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/cashMenu.jsp"></jsp:include>
 	</div>
 	
 	<!-- cash 수정 폼 -->
-	<section id="contact" class="contact py-1">
-		<div class="container pt-5 col-lg-6 text-center">
+	<section id="contact" class="contact py-1" data-aos="zoom-out" data-aos-delay="500" data-aos-duration="1000">
+		<div class="container pt-4 mt-5 col-lg-6 text-center bg-light">
 		<h3 class="text-secondary"><%=year%>년 <%=month%>월 <%=date%>일 가계부 수정</h3>
 		<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post" role="form" class="php-email-form">
 			<input type="hidden" name="year" value="<%=year%>">

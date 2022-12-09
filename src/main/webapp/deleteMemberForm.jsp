@@ -31,16 +31,18 @@
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body id="ice">
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script> 
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="inc/myMenu.jsp"></jsp:include>
 	</div>
 	
 	<!-- helpList Insert -->
-	<section id="pricing" class="pricing">
+	<section id="pricing" class="pricing" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 		<div class="container">
 			<div class="section-title">
 				<span>Delete My Account</span>
@@ -50,7 +52,7 @@
 		</div>
 	</section>
 	
-	<div class="container text-center bg-light py-4 w-75 rounded">
+	<div class="container text-center bg-light py-4 w-75 rounded" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 		<div class="container py-3 rounded">
 			<ul>
 				<li>사용하고 계신 아이디는 탈퇴할 경우 <span class="text-danger">재사용 및 복구가 불가능</span>합니다.</li>

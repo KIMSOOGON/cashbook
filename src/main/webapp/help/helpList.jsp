@@ -60,7 +60,7 @@
 	</div>
 	
 	<!-- helpList -->
-	<section id="pricing" class="pricing" data-aos="fade-up" data-aos-delay="500">
+	<section id="pricing" class="pricing" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
 		<div class="container">
 			<div class="section-title">
 				<span>HelpList</span>
@@ -70,7 +70,7 @@
 		</div>
 	</section>
 	
-	<div class="row box mx-4 rounded bg-light" data-aos="fade-up" data-aos-delay="500">
+	<div class="row box mx-4 rounded bg-light" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
 		<table class="table table-hover shadow-lg table-bordered">
 			<tr class="text-center text-primary" style="background-color:rgb(240,235,250)">
 				<th colspan="3">문의사항</th>

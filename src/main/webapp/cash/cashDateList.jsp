@@ -64,7 +64,7 @@
 	</div>
 	
 	<!-- Services Section 상세페이지 -->
-	<section id="services" class="services" data-aos="fade-up" data-aos-delay="500">
+	<section id="services" class="services" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
 		<div class="container">
 			<div class="section-title">
 				<span>Financial Ledger Detail</span>
@@ -106,8 +106,8 @@
 	</section>
 			
 	<!-- cash 입력 폼 -->
-	<section id="contact" class="contact py-1" data-aos="fade-up" data-aos-delay="500">
-		<div class="container pt-5 col-lg-6 text-center">
+	<section id="contact" class="contact py-1" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
+		<div class="container pt-5 col-lg-6 text-center bg-light">
 		<h3 class="text-secondary">가계부 추가</h3>
 		<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post" role="form" class="php-email-form">
 			<input type="hidden" name="year" value="<%=year%>">

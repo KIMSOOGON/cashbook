@@ -64,15 +64,18 @@
 		text-decoration:none;
 	}
 	</style>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body id="winter">
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script> 
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="../inc/adminMenu.jsp"></jsp:include>
 	</div>
 	
 	<!-- memberList Content -->
-	<section id="pricing" class="pricing">
+	<section id="pricing" class="pricing" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 		<div class="container shadow-lg">
 			<div class="section-title">
 				<span>Notice Management</span>
@@ -82,7 +85,7 @@
 		</div>
 	</section>
 	
-	<div class="container shadow">
+	<div class="container shadow" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 		<div class="text-center my-3">
 			<a href="<%=request.getContextPath()%>/admin/noticeListInsertForm.jsp" class="btn btn-warning font-weight-bold">ADD Notice</a>
 		</div>

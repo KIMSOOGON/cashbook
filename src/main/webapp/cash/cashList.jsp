@@ -99,7 +99,7 @@
 	</div>
 	
   	<!-- ======= Services Section ======= -->
-	<section id="services" class="services" data-aos="fade-up" data-aos-delay="500">
+	<section id="services" class="services" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
 		<div class="container">
 			<div class="section-title">
 				<span>Financial ledger Calendar</span>
