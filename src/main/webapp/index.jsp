@@ -77,7 +77,7 @@
 				<h3 class="m-0 font-weight-bold text-white">Offical Notice</h3>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="container table table-bordered bg-white w-75" id="dataTable">
+							<table class="container table table-bordered bg-light w-75" id="dataTable">
 								<thead class="text-primary">
 									<tr>
 										<th>NOTICE</th>
