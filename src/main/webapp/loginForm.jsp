@@ -56,11 +56,14 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	
-	
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body id="lf">
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>AOS.init();</script> 
+	
 	<!-- 로그인 폼 -->
-	<section id="contact" class="contact">
+	<section id="contact" class="contact" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 	<div class="container pt-5 col-lg-6 text-center">
 	<h1 class="text-secondary">LOG-IN</h1>
 	  <form action="<%=request.getContextPath()%>/loginAction.jsp" method="post" role="form" class="php-email-form">

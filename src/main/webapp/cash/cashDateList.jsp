@@ -88,9 +88,22 @@
 					</tr>
 				<%
 					for(HashMap<String,Object> m : list){
+						String categoryKind = (String)m.get("categoryKind");
 				%>		
 						<tr>
-							<td><%=(String)m.get("categoryKind")%></td>
+							<td>
+								<%
+								if(categoryKind.equals("지출")){
+								%>
+									<span class="container rounded" style="background-color:rgb(190,230,245)"><%=categoryKind%></span>
+								<%				
+									} else {
+								%>				
+									<span class="container rounded" style="background-color:rgb(200,245,220)"><%=categoryKind%></span>
+								<%				
+									}
+								%>
+							</td>
 							<td><%=m.get("categoryName")%></td>
 							<td><%=m.get("cashPrice")%></td>
 							<td><%=m.get("cashMemo")%></td>

@@ -14,24 +14,42 @@
 	// request 년 + 월
 	int year = 0;
 	int month = 0;
+	String searchDate = null;
 	
-	if(request.getParameter("year") == null || request.getParameter("month") == null){ // 입력값 없을 시, 오늘기준
-		Calendar today = Calendar.getInstance(); // 오늘날짜
-		year = today.get(Calendar.YEAR);
-		month = today.get(Calendar.MONTH);
-	} else { // 연,월 입력값 있을 경우 받아오기
-		year = Integer.parseInt(request.getParameter("year"));
-		month = Integer.parseInt(request.getParameter("month"));
-		// month -> -1, month -> 12일 경우
-		if(month == -1){ // 올해 1월에서 작년 12월로 넘어가기
-			month = 11;
-			year -= 1;
-		} 
-		if(month == 12){ // 올해 12월에서 내년 1월로 넘어가기
-			month = 0;
-			year += 1;
+	if(request.getParameter("searchDate") == null || request.getParameter("searchDate").equals("")) { // 검색값 없을 시
+		if(request.getParameter("year") == null || request.getParameter("month") == null){ // 입력값 없을 시, 오늘기준
+			System.out.println("입력받은 날짜값이 없어 자동적으로 '오늘'날짜 모니터링");
+			Calendar today = Calendar.getInstance();
+			year = today.get(Calendar.YEAR);
+			month = today.get(Calendar.MONTH);
+		} else { // 연,월 입력값 있을 경우 받아오기
+			System.out.println("입력받은 날짜값이 띄우기");
+			year = Integer.parseInt(request.getParameter("year"));
+			month = Integer.parseInt(request.getParameter("month"));
+			// month -> -1, month -> 12일 경우
+			if(month == -1){ // 올해 1월에서 작년 12월로 넘어가기
+				month = 11;
+				year -= 1;
+			} 
+			if(month == 12){ // 올해 12월에서 내년 1월로 넘어가기
+				month = 0;
+				year += 1;
+			}
 		}
+	} else { // 검색값 존재할 경우
+		searchDate = request.getParameter("searchDate");
+		System.out.println("searchDate : "+searchDate);
+		
+		String searchYear = searchDate.substring(0,4);
+		String searchMonth = searchDate.substring(5,7);
+		System.out.println("searchYear : "+searchYear);
+		System.out.println("searchMonth : "+searchMonth);
+		
+		year = Integer.parseInt(searchYear);
+		month = Integer.parseInt(searchMonth)-1;
+		System.out.println("year / month : " +year+"/"+month);
 	}
+	System.out.println("3) year / month : " +year+"/"+month);
 	// 출력하고자 하는 월과 월의 1일의 요일(일~토, 1~7)
 	Calendar targetDate = Calendar.getInstance();
 	targetDate.set(Calendar.YEAR, year);
@@ -120,8 +138,16 @@
 					<span>Month</span>
 					<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-lg">&#8702;</a>
 				</div>
+				
+				<div class="container py-1 pt-2 text-center rounded shadow">
+					<form action="<%=request.getContextPath()%>/cash/cashList.jsp" method="post">
+						검색 : <input type="date" name=searchDate value="<%=searchDate%>" class="rounded" style="background-color:rgb(150,200,150)">
+						<button type="submit" class="btn btn-sm" style="background-color:rgb(230,190,180")>이동</button>
+					</form>
+				</div>
+				
 				<!-- Calendar 출력 -->
-				<table class="container table table-hover text-dark bg-white shadow">
+				<table class="container table table-hover text-dark bg-white shadow table-bordered">
 					<tr class="text-center">
 						<th style="color:red">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th style="color:blue">토</th>
 					</tr>
@@ -130,7 +156,7 @@
 						<%
 							for(int i=1; i<=totalTd; i++){ // 해당 월 1~말일까지 출력
 						%>
-								<td>
+								<td style="width:150px; height:150px">
 						<%
 									int date = i-beginBlank;
 									if(date>0 && date<=lastDate){
@@ -140,14 +166,24 @@
 												<%=date%>
 											</a>	
 										</div>
-										<div>
+										<div class="container rounded shadow-sm">
 											<% // 일별 가계부 출력
 												for(HashMap<String, Object> m : list){
 													String cashDate = (String)(m.get("cashDate"));
+													String categoryKind = (String)(m.get("categoryKind"));
 													int cashOneDate = Integer.parseInt(cashDate.substring(8)); 
 													if(cashOneDate == date){
+														if(categoryKind.equals("지출")){
 											%>
-														[<%=(String)(m.get("categoryKind"))%>]
+															<span class="container rounded" style="background-color:rgb(190,230,245)"><%=categoryKind%></span>
+											<%				
+														} else {
+											%>				
+															<span class="container rounded" style="background-color:rgb(200,245,220)"><%=categoryKind%></span>
+											<%				
+														}
+											%>
+														
 														<%=(String)(m.get("categoryName"))%>										
 														<%=(long)(m.get("cashPrice"))%>원
 														<br>
