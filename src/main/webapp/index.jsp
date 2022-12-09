@@ -88,7 +88,7 @@
 									<%
 									for(Notice n : list){
 									%>		
-										<tr>
+										<tr style="height:80px;">
 											<td><%=n.getNoticeMemo()%></td>
 											<td><%=n.getCreatedate()%></td>
 										</tr>

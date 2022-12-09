@@ -89,7 +89,7 @@
 	}
 	System.out.println((month+1)+"월 총 지출금액 : "+monthlyExpense);
 	System.out.println((month+1)+"월 총 수입금액 : "+monthlyIncome);
-	long monthlyTtl = monthlyExpense - monthlyIncome;
+	long monthlyTtl = monthlyIncome - monthlyExpense;
 	System.out.println((month+1)+"월 결산금액 : "+monthlyTtl);
 	// View : 달력출력 + 일별 cash 목록
 %>
@@ -142,22 +142,34 @@
 			</div>
 			<div class="text-dark row py-2" style="background-color:rgb(240,235,250)">
 				
-				<div class="text-center container rounded shadow">
+				<div class="text-center container pt-2 text-primary rounded col-8 bg-light">
 					<span id="Calendar"><%=year%>년 <%=month+1%>월</span>
 				</div>
 				
-				<div class="col container text-center shadow"><!-- Year이동 -->
+				<!-- 결산란 -->
+				<div class="text-end box rounded col-4 bg-light">
+					<div><span class="container rounded" style="background-color:rgb(190,230,245)">총 지출금액</span> : <%=monthlyExpense%></div>
+					<div><span class="container rounded" style="background-color:rgb(200,245,220)">총 수입금액</span> : <%=monthlyIncome%></div>
+					<div><span class="container rounded" style="background-color:rgb(240,190,200)">총 결산</span> : <%=monthlyTtl%></div>
+				</div>
+				
+				<!-- Year이동 -->
+				<div class="col container text-center shadow">
 					<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year-1%>&month=<%=month%>" class="btn btn-lg">&#8701;</a>
 					<span>Year</span>
 					<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year+1%>&month=<%=month%>" class="btn btn-lg">&#8702;</a>
 				</div>
+				
+				<!-- 검색 -->
 				<div class="container py-1 pt-2 text-center rounded shadow-sm col">
 					<form action="<%=request.getContextPath()%>/cash/cashList.jsp" method="post">
 						검색 : <input type="date" name=searchDate value="<%=searchDate%>" class="rounded" style="background-color:rgb(150,200,150)">
 						<button type="submit" class="btn btn-sm" style="background-color:rgb(230,190,180")>이동</button>
 					</form>
 				</div>
-				<div class="col container text-center shadow"><!-- Month이동 -->
+				
+				<!-- Month이동 -->
+				<div class="col container text-center shadow">
 					<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-lg">&#8701;</a>
 					<span>Month</span>
 					<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-lg">&#8702;</a>

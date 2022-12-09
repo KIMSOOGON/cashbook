@@ -70,8 +70,8 @@
 		</div>
 	</section>
 	
-	<div class="row box mx-4 rounded bg-light" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
-		<table class="table table-hover shadow-lg table-bordered">
+	<div class="container shadow" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
+		<table class="container rounded table table-hover shadow-lg bg-light table-bordered">
 			<tr class="text-center text-primary" style="background-color:rgb(240,235,250)">
 				<th colspan="3">문의사항</th>
 				<th colspan="2">답변내역</th>
@@ -115,7 +115,7 @@
 			%>
 		</table>
 		<div class="text-center py-2">
-			<a href="<%=request.getContextPath()%>/help/insertHelpListForm.jsp" class="btn btn-lg btn-warning">ADD</a>
+			<a href="<%=request.getContextPath()%>/help/insertHelpListForm.jsp" class="btn btn-lg btn-warning">문의하기</a>
 		</div>
 	</div>
 	
