@@ -142,12 +142,20 @@
 			</div>
 			<div class="text-dark row py-2" style="background-color:rgb(240,235,250)">
 				
+				<div class="text-end box rounded col-2 bg-light">
+					<a href="<%=request.getContextPath()%>/cash/cashDetailList.jsp" class="btn btn-sm" style="background-color:rgb(200,240,245)">
+						<img src="<%=request.getContextPath()%>/assets/img/analysis.png" style="width:25px">내 가계부 분석하기
+					</a>
+				</div>
+				
 				<div class="text-center container pt-2 text-primary rounded col-8 bg-light">
 					<span id="Calendar"><%=year%>년 <%=month+1%>월</span>
 				</div>
 				
+				
+				
 				<!-- 결산란 -->
-				<div class="text-end box rounded col-4 bg-light">
+				<div class="text-end box rounded col-2 bg-light">
 					<div><span class="container rounded" style="background-color:rgb(190,230,245)">총 지출금액</span> : <%=monthlyExpense%></div>
 					<div><span class="container rounded" style="background-color:rgb(200,245,220)">총 수입금액</span> : <%=monthlyIncome%></div>
 					<div><span class="container rounded" style="background-color:rgb(240,190,200)">총 결산</span> : <%=monthlyTtl%></div>
