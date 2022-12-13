@@ -77,7 +77,12 @@
       		<nav id="navbar" class="navbar">
 				<ul>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
-					<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a></li>
+					<li class="dropdown"><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a>
+						<ul>
+							<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp"><img src="<%=request.getContextPath()%>/assets/img/calendar.png" style="width:25px">가계부 달력</a></li>
+							<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashDetailList.jsp"><img src="<%=request.getContextPath()%>/assets/img/analysis.png" style="width:25px">가계부 분석(통계)</a></li>
+						</ul>
+					</li>
 					<li><a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">고객센터</a></li>
 					<li class="dropdown active"><a href="<%=request.getContextPath()%>/myPage.jsp"><span class="text-primary">마이 페이지</span> <i class="bi bi-chevron-down"></i></a>
 						<ul>
