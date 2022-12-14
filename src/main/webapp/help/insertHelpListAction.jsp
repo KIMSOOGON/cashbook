@@ -22,13 +22,6 @@
 	String rtnUrl = "/help/insertHelpListForm.jsp";
 	String tgtUrl = "/help/helpList.jsp";
 	
-	// 문의내용 미입력시, 문구출력 및 재입력하게끔 돌려보내기
-	if(helpMemo==null||helpMemo.equals("")){
-		System.out.println("문의내용이 비었습니다");
-		response.sendRedirect(request.getContextPath()+rtnUrl);
-		return;
-	}
-	
 	// Help클래스 'help'를 선언 후, 받아온 memo 넣어주기
 	Help help = new Help();
 	help.setHelpMemo(helpMemo);

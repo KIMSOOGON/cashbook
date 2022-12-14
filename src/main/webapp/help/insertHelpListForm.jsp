@@ -56,12 +56,12 @@
 	</section>
 	
 	<div class="container text-center bg-light w-75" data-aos="fade-out" data-aos-delay="600" data-aos-duration="1000">
-		<form action="<%=request.getContextPath()%>/help/insertHelpListAction.jsp">
+		<form action="<%=request.getContextPath()%>/help/insertHelpListAction.jsp" id="insertHelpForm">
 			<table class="table table-hover">
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea rows="10" cols="50" name="helpMemo" placeholder="문의내용을 입력하세요"></textarea>
+						<textarea rows="10" cols="50" name="helpMemo" id="helpMemo" placeholder="문의내용을 입력하세요"></textarea>
 					</td>
 				</tr>		
 				<tr>
@@ -69,10 +69,31 @@
 					<td><%=memberId%></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit" class="btn btn-lg btn-danger">확인</button></td>
+					<td colspan="2"><button type="button" id="insertHelpBtn" class="btn btn-lg btn-danger">확인</button></td>
 				</tr>
 			</table>	
 		</form>
 	</div>
+	
+	<!-- js로 유효성검사 -->
+	<script>
+	let insertHelpBtn = document.querySelector('#insertHelpBtn');
+	insertHelpBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('insertHelpBtn clik!');
+		
+		// 문의내용 유효성 검사
+		let helpMemo = document.querySelector('#helpMemo');
+		if(helpMemo.value == ''){
+			alert('문의내용을 입력하세요');
+			helpMemo.focus();
+			return;
+		}
+		
+		let insertHelpForm = document.querySelector('#insertHelpForm');
+		insertHelpForm.submit();
+	})
+	
+	</script>
 </body>
 </html>

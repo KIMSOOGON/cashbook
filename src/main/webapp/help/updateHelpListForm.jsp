@@ -65,7 +65,7 @@
 	</section>
 	
 	<div class="container text-center bg-light w-75" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1000">
-		<form action="<%=request.getContextPath()%>/help/updateHelpListAction.jsp" method="post">
+		<form action="<%=request.getContextPath()%>/help/updateHelpListAction.jsp" id="updateHelpForm" method="post">
 			<table class="table table-hover">
 				<tr>
 					<th>문의번호</th>
@@ -73,17 +73,38 @@
 				</tr>
 				<tr>
 					<th>문의내용</th>
-					<td><textarea rows="10" cols="50" name="helpMemo" placeholder="내용을 입력하세요"><%=helpMemo%></textarea></td>
+					<td><textarea rows="10" cols="50" id="helpMemo" name="helpMemo" placeholder="내용을 입력하세요"><%=helpMemo%></textarea></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
 					<td><%=memberId%></td>
 				</tr>	
 				<tr>
-					<td colspan="2"><button type="submit" class="btn btn-lg btn-danger">수정</button></td>
+					<td colspan="2"><button type="button" id="updateHelpBtn" class="btn btn-lg btn-danger">수정</button></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	
+	<!-- js로 유효성검사 -->
+	<script>
+	let updateHelpBtn = document.querySelector('#updateHelpBtn');
+	updateHelpBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('updateHelpBtn clik!');
+		
+		// 문의내용 유효성 검사
+		let helpMemo = document.querySelector('#helpMemo');
+		if(helpMemo.value == ''){
+			alert('문의내용을 입력하세요');
+			helpMemo.focus();
+			return;
+		}
+		
+		let updateHelpForm = document.querySelector('#updateHelpForm');
+		updateHelpForm.submit();
+	})
+	
+	</script>
 </body>
 </html>
