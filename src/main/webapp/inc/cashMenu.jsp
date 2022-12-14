@@ -97,10 +97,10 @@
 					%>
 								<li class="dropdown"><a href="<%=request.getContextPath()%>/admin/adminMain.jsp"><span class="text-danger">관리자모드</span> <i class="bi bi-chevron-down"></i></a>
 									<ul>
-										<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">Notice Management</a></li>
-										<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">Category Management</a></li>
-										<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">Member Management</a></li>
-										<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">Customer Service Management</a></li>
+										<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공문 관리</a></li>
+										<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a></li>
+										<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원목록 관리</a></li>
+										<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">고객센터 관리</a></li>
 									</ul>
 								</li>
 					<%			

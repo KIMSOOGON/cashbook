@@ -88,21 +88,41 @@
 	
 		<div class="box mx-4 pt-5 text-center bg-light col">
 			<h3 class="text-primary">답변내용수정</h3>
-			<form action="<%=request.getContextPath()%>/admin/helpListAllUpdateAction.jsp" method="post">
+			<form action="<%=request.getContextPath()%>/admin/helpListAllUpdateAction.jsp" method="post" id="commentForm">
 				<div>
 					<input type="hidden" name="helpNo" value="<%=helpNo%>">
 				</div>
 				<table class="table table-hover shadow-lg">
 					<tr>
 						<th>답변</th>
-						<td><textarea rows="10" cols="50" name="commentMemo" placeholder="답변을 입력하세요"><%=commentMemo%></textarea></td>
+						<td><textarea rows="10" cols="50" name="commentMemo" id="commentMemo" placeholder="답변을 입력하세요"><%=commentMemo%></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="2"><button type="submit" class="btn btn-lg btn-danger">edit</button></td>
+						<td colspan="2"><button type="button" id="commentBtn" class="btn btn-lg btn-danger">edit</button></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
+	
+	<!-- js로 유효성검사 -->
+	<script>
+	let commentBtn = document.querySelector('#commentBtn');
+	commentBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('commentBtn clik!');
+		
+		// 문의내용 유효성 검사
+		let commentMemo = document.querySelector('#commentMemo');
+		if(commentMemo.value == ''){
+			alert('답변내용을 입력하세요');
+			commentMemo.focus();
+			return;
+		}
+		
+		let commentForm = document.querySelector('#commentForm');
+		commentForm.submit();
+	})
+	</script>
 </body>
 </html>

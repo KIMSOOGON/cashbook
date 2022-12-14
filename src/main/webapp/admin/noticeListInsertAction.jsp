@@ -13,14 +13,6 @@
 	String tgtUrl = "/admin/noticeList.jsp";
 	String rtnUrl = "/admin/noticeListInsertForm.jsp";
 	
-	// parameter값 공백일 경우 되돌리기
-	if(noticeMemo==null||noticeMemo.equals("")){
-		System.out.println("공문내용 입력 바랍니다.");
-		String msg = URLEncoder.encode("내용 입력 바랍니다.","utf-8");
-		response.sendRedirect(request.getContextPath()+rtnUrl+"?msg="+msg);
-		return;
-	}
-	
 	Notice notice = new Notice();
 	notice.setNoticeMemo(noticeMemo);
 

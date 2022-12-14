@@ -54,24 +54,7 @@
 	</section>
 	
 	<div class="container text-center bg-light w-75" data-aos="zoom-out" data-aos-delay="600" data-aos-duration="1000">
-		<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
-			<div>
-				<%	// 빈항목 제출 시, 문구출력
-					String msg = request.getParameter("msg");
-					if(msg!=null){
-				%>		
-						<%=msg%>					
-				<%		
-					}
-					// 비밀번호 확인 일치여부, 문구출력
-					String ckMsg = request.getParameter("ckMsg");
-					if(ckMsg!=null){
-				%>		
-						<%=ckMsg%>					
-				<%		
-					}
-				%>
-			</div>
+		<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post" id="updateMemberForm">
 			<table class="table table-hover">
 				<tr>
 					<th>아이디</th>
@@ -79,25 +62,70 @@
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" name="memberPw"></td>
+					<td><input type="password" id="memberPw" name="memberPw"></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="password" name="newMemberPw"></td>
+					<td><input type="password" id="newMemberPw" name="newMemberPw"></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호 확인</th>
-					<td><input type="password" name="newMemberPwCheck"></td>
+					<td><input type="password" id="newMemberPwCheck" name="newMemberPwCheck"></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="memberName" value="<%=loginMember.getMemberName()%>"></td>
+					<td><input type="text" id="memberName" name="memberName" value="<%=loginMember.getMemberName()%>"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit" class="btn btn-lg btn-danger">수정</button></td>
+					<td colspan="2"><button type="button" class="btn btn-lg btn-danger" id="updateMemberBtn">수정</button></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	
+	<!-- js 유효성검사 -->
+	<script>
+	let updateMemberBtn = document.querySelector('#updateMemberBtn');
+	updateMemberBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('updateMemberBtn clik!');
+		
+		// PW 폼 유효성 검사
+		let memberPw = document.querySelector('#memberPw');
+		if(memberPw.value == ''){
+			alert('패스워드를 입력하세요');
+			memberPw.focus();
+			return;
+		}
+		
+		// 새 PW 폼 유효성 검사
+		let newMemberPw = document.querySelector('#newMemberPw');
+		let newMemberPwCheck = document.querySelector('#newMemberPwCheck');
+		if(newMemberPw.value == '' || newMemberPw.value != newMemberPwCheck.value){
+			alert('새 패스워드를 다시 확인바랍니다');
+			newMemberPw.focus();
+			return;
+		}
+		
+		// NAME 폼 유효성 검사
+		let memberName = document.querySelector('#memberName');
+		if(memberName.value == ''){
+			alert('이름을 입력하세요');
+			memberName.focus();
+			return;
+		}
+		
+		let updateMemberForm = document.querySelector('#updateMemberForm');
+		updateMemberForm.submit();
+	});
+	
+	<% // 기존 패스워드 다를 시 출력
+		if(request.getParameter("falseMsg") != null){
+	%>
+			alert('패스워드가 다릅니다.');
+	<%
+		}
+	%>
+	</script>
 </body>
 </html>

@@ -17,15 +17,7 @@
 	// parameter값 받아오기
 	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
 	String commentMemo = request.getParameter("commentMemo");
-	
-	// 수정란 공백일 시, 돌려보내기
-	if(commentMemo==null||commentMemo.equals("")){
-		System.out.println("답변내용을 입력해주세요");
-		String rtnUrl = "/admin/helpListAllUpdateForm.jsp";
-		response.sendRedirect(request.getContextPath()+rtnUrl+"?helpNo="+helpNo+"&commentMemo="+commentMemo);
-		return;
-	}
-	
+
 	// Comment class에 넣어주기
 	Comment comment = new Comment();
 	comment.setHelpNo(helpNo);

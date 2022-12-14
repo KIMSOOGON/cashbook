@@ -62,7 +62,7 @@
 				<li>모든 내용을 확인하셨으며 탈퇴를 진행하고자 하시면 비밀번호를 입력해주세요.</li>
 			</ul>
 		</div>
-		<form action="<%=request.getContextPath()%>/deleteMemberAction.jsp" method="post">
+		<form action="<%=request.getContextPath()%>/deleteMemberAction.jsp" method="post" id="deleteMemberForm">
 			<div>
 				<%	
 					String pwMsg = request.getParameter("pwMsg");
@@ -82,13 +82,41 @@
 			<table class="table table-hover">
 				<tr>
 					<th>패스워드</th>
-					<td><input type="password" name="memberPw"></td>
+					<td><input type="password" name="memberPw" id="memberPw"></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="container py-3"><button type="submit" class="btn btn-lg btn-danger">확인</button></td>
+					<td colspan="2" class="container py-3"><button type="button" class="btn btn-lg btn-danger" id="deleteMemberBtn">확인</button></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	
+	<!-- js 유효성검사 -->
+	<script>
+	let deleteMemberBtn = document.querySelector('#deleteMemberBtn');
+	deleteMemberBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('deleteMemberBtn clik!');
+		
+		// PW 폼 유효성 검사
+		let memberPw = document.querySelector('#memberPw');
+		if(memberPw.value == ''){
+			alert('패스워드를 입력하세요');
+			memberPw.focus();
+			return;
+		}
+		
+		let deleteMemberForm = document.querySelector('#deleteMemberForm');
+		deleteMemberForm.submit();
+	});
+	
+	<% // 기존 패스워드 다를 시 출력
+		if(request.getParameter("ckMsg") != null){
+	%>
+			alert('패스워드가 다릅니다.');
+	<%
+		}
+	%>
+	</script>
 </body>
 </html>

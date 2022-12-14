@@ -30,23 +30,6 @@
 	String tgtUrl = "/updateMemberForm.jsp";
 	String clUrl = "/cash/cashList.jsp";
 	
-	// 누락항목여부 확인 후 돌려보내기
-	if(memberPw==null||newMemberPw==null||newMemberPwCheck==null||memberName==null
-		||memberPw.equals("")||newMemberPw.equals("")||newMemberPwCheck.equals("")||memberName.equals("")){
-		System.out.println("누락된 항목이 있습니다");
-		String msg = URLEncoder.encode("빈 항목을 채워주세요","utf-8");
-		response.sendRedirect(request.getContextPath()+tgtUrl+"?msg="+msg);
-		return;
-	}
-	
-	// 새 비밀번호 확인 일치여부
-	if(!newMemberPw.equals(newMemberPwCheck)){
-		System.out.println("새 비밀번호가 일치하지 않습니다.");
-		String ckMsg = URLEncoder.encode("새 비밀번호가 일치하지 않습니다","utf-8");
-		response.sendRedirect(request.getContextPath()+tgtUrl+"?ckMsg="+ckMsg);
-		return;
-	} 
-	
 	// 2 Model
 	
 	// 아이디 및 비밀번호 확인 여부를 위한 member 객체 생성
@@ -79,7 +62,8 @@
 		}
 	} else { // 계정 불일치, 아이디 및 패스워드 재확인 바람문구 리턴
 		System.out.println("아이디 및 패스워드 불일치");
-		response.sendRedirect(request.getContextPath()+tgtUrl);
+		boolean falseMsg = true;
+		response.sendRedirect(request.getContextPath()+tgtUrl+"?falseMsg="+falseMsg);
 		return;
 	}
 %>

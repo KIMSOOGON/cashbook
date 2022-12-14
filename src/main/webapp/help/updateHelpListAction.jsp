@@ -11,14 +11,6 @@
 	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
 	String helpMemo = request.getParameter("helpMemo");
 	
-	// 내용 공백 -> 돌려보내기
-	if(helpMemo==null||helpMemo.equals("")){
-		System.out.println("내용을 입력하시요");
-		String rtnUrl = "/help/updateHelpListForm.jsp";
-		response.sendRedirect(request.getContextPath()+rtnUrl+"?helpNo="+helpNo);
-		return;
-	}
-	
 	Help help = new Help();
 	help.setHelpNo(helpNo);
 	help.setHelpMemo(helpMemo);

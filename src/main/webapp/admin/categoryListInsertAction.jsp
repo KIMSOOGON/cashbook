@@ -15,14 +15,6 @@
 	String rtnUrl = "/admin/categoryListInsertForm.jsp";
 	String tgtUrl = "/admin/categoryList.jsp";
 	
-	// Name 공백 돌려보내기
-	if(categoryName==null||categoryName.equals("")){
-		System.out.println("카테고리 이름을 입력하세요");
-		String msg = URLEncoder.encode("카테고리 이름을 입력하세요","utf-8");
-		response.sendRedirect(request.getContextPath()+rtnUrl+"?msg="+msg);
-		return;
-	}
-	
 	Category category = new Category();
 	category.setCategoryKind(categoryKind);
 	category.setCategoryName(categoryName);

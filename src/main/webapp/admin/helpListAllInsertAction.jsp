@@ -21,14 +21,6 @@
 	System.out.println("commentMemo : "+commentMemo);
 	System.out.println("memberId(답변자) : "+memberId);
 	
-	// 답변 미입력 시, 되돌아가기
-	if(commentMemo==null||commentMemo.equals("")){
-		System.out.println("답변내용을 입력해주세요");
-		String rtnUrl = "/admin/helpListAllInsertForm.jsp";
-		response.sendRedirect(request.getContextPath()+rtnUrl+"?helpNo="+helpNo);
-		return;
-	}
-	
 	// Comment 클래스에 넣어주기
 	Comment comment = new Comment();
 	comment.setHelpNo(helpNo);

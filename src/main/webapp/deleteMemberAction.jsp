@@ -21,14 +21,6 @@
 	String tgtUrl = "/deleteMemberForm.jsp";
 	String sccUrl = "/loginForm.jsp";
 	
-	// Pw값이 공백일 경우 돌려보내기
-	if(memberPw==null || memberPw.equals("")){
-		System.out.println("패스워드를 입력하세요");
-		String pwMsg = URLEncoder.encode("패스워드를 입력하세요","utf-8");
-		response.sendRedirect(request.getContextPath()+tgtUrl+"?pwMsg="+pwMsg);
-		return;
-	}
-	
 	Member paramMember = new Member();
 	paramMember.setMemberId(memberId);
 	paramMember.setMemberPw(memberPw);

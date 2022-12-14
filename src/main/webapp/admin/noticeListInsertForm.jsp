@@ -53,27 +53,37 @@
 	
 	<section id="contact" class="contact py-1" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 		<div class="container pt-5 col-lg-6 text-center bg-light">
-			<form method="post" action="<%=request.getContextPath()%>/admin/noticeListInsertAction.jsp">
+			<form method="post" action="<%=request.getContextPath()%>/admin/noticeListInsertAction.jsp" id="noticeForm">
 				<table class="table table-hover shadow-lg">
 					<tr>
-						<td><textarea rows="5" cols="50" name="noticeMemo" placeholder="공문을 작성해주세요"></textarea><td>
+						<td><textarea rows="5" cols="50" name="noticeMemo" id="noticeMemo" placeholder="공문을 작성해주세요"></textarea><td>
 					</tr>
 					<tr>
-						<td colspan="2"><button type="submit" class="btn btn-lg btn-danger">ADD</button></td>
+						<td colspan="2"><button type="button" id="noticeBtn" class="btn btn-lg btn-danger">ADD</button></td>
 					</tr>
 				</table>
 			</form>
-			<div>
-				<%	// 공백 입력 시, 출력문구
-					String msg = request.getParameter("msg");
-					if(msg!=null){
-				%>		
-						<%=msg%>
-				<%		
-					}
-				%>
-			</div>
 		</div>
 	</section>
+	
+	<!-- js로 유효성검사 -->
+	<script>
+	let noticeBtn = document.querySelector('#noticeBtn');
+	noticeBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('noticeBtn clik!');
+		
+		// 문의내용 유효성 검사
+		let noticeMemo = document.querySelector('#noticeMemo');
+		if(noticeMemo.value == ''){
+			alert('공문내용을 입력하세요');
+			noticeMemo.focus();
+			return;
+		}
+		
+		let noticeForm = document.querySelector('#noticeForm');
+		noticeForm.submit();
+	})
+	</script>
 </body>
 </html>

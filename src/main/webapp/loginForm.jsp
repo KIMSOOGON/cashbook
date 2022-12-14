@@ -96,6 +96,12 @@
 			alert('존재하지않는 아이디이거나 패스워드가 틀렸습니다');
 	<%
 		}
+	// 회원탈퇴 성공 시, 문구출력
+	if(request.getParameter("dtMsg") != null){
+	%>
+			alert('회원탈퇴 완료하였습니다 수고하십시요.');
+	<%
+		}
 	%>
 	</script>
 </body>
