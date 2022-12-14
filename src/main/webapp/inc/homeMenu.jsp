@@ -77,7 +77,7 @@
       		<nav id="navbar" class="navbar">
 				<ul>
 					<li><a class="nav-link active" href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
-					<li class="dropdown"><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부</a>
+					<li class="dropdown"><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">내 가계부 <i class="bi bi-chevron-down"></i></a>
 						<ul>
 							<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp"><img src="<%=request.getContextPath()%>/assets/img/calendar.png" style="width:25px">가계부 달력</a></li>
 							<li><a class="nav-link" href="<%=request.getContextPath()%>/cash/cashDetailList.jsp"><img src="<%=request.getContextPath()%>/assets/img/analysis.png" style="width:25px">가계부 분석(통계)</a></li>

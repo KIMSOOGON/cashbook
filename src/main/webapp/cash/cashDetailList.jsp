@@ -78,12 +78,12 @@
 	
 	
 
-	<div class="container bg-light pt-2">
-	<div class="container rounded m-2">
-		<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="btn btn-sm" style="background-color:rgb(200,240,245)">
-			<img src="<%=request.getContextPath()%>/assets/img/calendar.png" style="width:25px">내 가계부 작성하기
-		</a>
-	</div>
+	<div class="container bg-light pt-2" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
+		<div class="container rounded m-2">
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="btn btn-sm" style="background-color:rgb(200,240,245)">
+				<img src="<%=request.getContextPath()%>/assets/img/calendar.png" style="width:25px">내 가계부 작성하기
+			</a>
+		</div>
 		<h5 class="container pt-3">연도별 총 지출 및 수입 통계</h5>
 		<div class="text-end">단위 : ￦</div>
 		<table class="table table-hover">
@@ -114,7 +114,7 @@
 		</table>
 	</div>
 	
-	<div class="container my-5 pt-2 bg-light">
+	<div class="container my-5 pt-2 bg-light" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
 		<h5 class="container pt-2"><%=year%>년 월별 총 지출 및 수입 통계</h5>
 		<div class="text-end">
 			<form action="<%=request.getContextPath()%>/cash/cashDetailList.jsp">

@@ -27,6 +27,7 @@
 	
 	// id 중복체크
 	if(checkId){ // id 중복일경우 (true인경우)
+		System.out.println("이미존재하는 아이디입니다");
 		String idMsg = URLEncoder.encode("이미 존재하는 아이디입니다.","utf-8");
 		response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?idMsg="+idMsg);
 		return;

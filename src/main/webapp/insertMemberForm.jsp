@@ -35,43 +35,90 @@
 	
 	<!-- 로그인 폼 -->
 	<section id="contact" class="contact" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-	<div class="container pt-5 col-lg-6 text-center">
-	<h1 class="text-secondary">회원가입</h1>
-	  <form action="<%=request.getContextPath()%>/insertMemberAction.jsp" method="post" role="form" class="php-email-form">
-	    <div>
-	      <div class="form-group mt-3">
-	        <input type="text" name="memberId" class="form-control" id="memberId" placeholder="Your Id" required>
-	      </div>
-	      <div class="form-group mt-3 mt-md-4">
-	        <input type="password" class="form-control" name="memberPw" id="memberPw" placeholder="Your Password" required>
-	      </div>
-	      <div class="form-group mt-3 mt-md-4">
-	        <input type="text" class="form-control" name="memberName" id="memberName" placeholder="Your Name" required>
-	      </div>
-	    </div>
-	    <div class="text-center mt-5"><button type="submit">회원가입</button></div>
-	  </form>
-	</div>
+		<div class="container pt-5 col-lg-6 text-center bg-light">
+			<h1 class="text-secondary">회원가입 <img src="<%=request.getContextPath()%>/assets/img/signin.png" style="width:60px"></h1>
+			<form action="<%=request.getContextPath()%>/insertMemberAction.jsp" id="signinForm" method="post" role="form" class="php-email-form">
+			  	<div class="box row">
+				    <div class="box col text-center">
+						<div class="form-group mt-3">
+				        	<input type="text" name="memberId" style="width:400px" class="form-control" id="memberId" placeholder="Your Id" required>
+				      	</div>
+				      	<div class="form-group mt-3 mt-md-4">
+							<input type="password" class="form-control" style="width:400px" name="memberPw" id="memberPw" placeholder="Your Password" required>
+				      	</div>
+				      	<div class="form-group mt-3 mt-md-4">
+							<input type="text" class="form-control" style="width:400px" name="memberName" id="memberName" placeholder="Your Name" required>
+				      	</div>
+				    </div>
+				    <div class="box col pt-2 pb-2 mt-2 mb-2" style="background-color:rgb(232,218,179)">
+				    	<p class="box">
+				    		구디가계부 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다.
+				    		개인정보 수집 및 이용, 위치기반서비스 이용약관, 프로모션 정보수신에
+				    		모두 동의하십니까?
+				    	</p>
+				    	<hr>
+				    	<div class="form-check">
+				    		<label class="form-check-label" for="ck">동의합니다</label>
+					    	<input type="checkbox" class="ck" name="ck">
+				    	</div>
+				    </div>
+			    </div>
+				<div class="text-center mt-5"><button type="button" id="signinBtn" class="btn btn-outline-danger">회원가입</button></div>
+			</form>
+		</div>
 	</section>
-	<div>
-		<%
-			String msg = request.getParameter("msg");
-			if(msg!=null){
-		%>
-				<%=msg%>
-		<%
-			}
-		%>
-	</div>
-	<div>
-		<%
-			String idMsg = request.getParameter("idMsg");
-			if(idMsg!=null){
-		%>
-				<%=idMsg%>
-		<%
-			}
-		%>
-	</div>
+
+	<script>
+	let signinBtn = document.querySelector('#signinBtn');
+	signinBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('signinBtn clik!');
+		
+		// ID 폼 유효성 검사
+		let memberId = document.querySelector('#memberId');
+		if(memberId.value == ''){
+			alert('아이디를 입력하세요');
+			memberId.focus();
+			return;
+		}
+		
+		// PW 폼 유효성 검사
+		let memberPw = document.querySelector('#memberPw');
+		if(memberPw.value == ''){
+			alert('패스워드를 입력하세요');
+			memberPw.focus();
+			return;
+		}
+		
+		// NAME 폼 유효성 검사
+		let memberName = document.querySelector('#memberName');
+		if(memberName.value == ''){
+			alert('이름을 입력하세요');
+			memberName.focus();
+			return;
+		}
+		
+		// 동의 checkbox 유효성검사
+		let ck = document.querySelectorAll('.ck:checked');
+		console.log(ck.length);
+		if(ck.length != 1){
+			console.log(document.querySelectorAll('.ck.checked').length);
+			alert('약관에 동의하세요');
+			ck.focus();
+			return;
+		}
+		
+		let signinForm = document.querySelector('#signinForm');
+		signinForm.submit();
+	});
+	
+	<%
+		if(request.getParameter("idMsg") != null){
+	%>
+			alert('중복된 아이디입니다.');
+	<%
+		}
+	%>
+	</script>
 </body>
 </html>

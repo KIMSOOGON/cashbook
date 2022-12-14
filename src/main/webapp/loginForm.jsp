@@ -62,11 +62,18 @@
 	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 	<script>AOS.init();</script> 
 	
-	<!-- 로그인 폼 -->
+
 	<section id="contact" class="contact" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 	<div class="container pt-5 col-lg-6 text-center">
-	<h1 class="text-secondary">LOG-IN</h1>
-	  <form action="<%=request.getContextPath()%>/loginAction.jsp" method="post" role="form" class="php-email-form">
+
+	<!-- 홈화면 돌아가기 (로고플레이) -->
+	<div>
+		<a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/assets/img/goodee.png" style="width:300px"></a>
+	</div>
+	
+	<!-- 로그인 폼 -->
+	<h1 class="text-secondary mt-5">LOG-IN</h1>
+	  <form action="<%=request.getContextPath()%>/loginAction.jsp" method="post" role="form" class="php-email-form bg-light">
 	    <div>
 	      <div class="form-group mt-3">
 	        <input type="text" name="memberId" class="form-control" id="memberId" placeholder="Your Id" required>
@@ -76,9 +83,20 @@
 	      </div>
 	    </div>
 	    <div class="text-center mt-5"><button type="submit">LOG-IN</button></div>
-	    <div class="text-end"><a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="btn btn-sm text-white" style="background-color:rgb(20,85,10)">회원가입</a></div>
+	    <div class="text-end"><a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="btn btn-sm text-white" style="background-color:rgb(20,85,10)">회원가입 <img src="<%=request.getContextPath()%>/assets/img/signin.png" style="width:25px"></a></div>
 	  </form>
 	</div>
 	</section>
+	
+	<!-- 로그인 실패 시, 출력 js -->
+	<script>
+	<%
+		if(request.getParameter("msg") != null){
+	%>
+			alert('존재하지않는 아이디이거나 패스워드가 틀렸습니다');
+	<%
+		}
+	%>
+	</script>
 </body>
 </html>

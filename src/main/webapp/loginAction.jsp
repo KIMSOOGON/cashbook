@@ -22,5 +22,6 @@
 	}
 	
 	// redirect
-	response.sendRedirect(request.getContextPath()+redirectUrl); // 로그인 실패
+	String msg = "fail";
+	response.sendRedirect(request.getContextPath()+redirectUrl+"?msg="+msg); // 로그인 실패
 %>
