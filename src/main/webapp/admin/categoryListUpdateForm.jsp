@@ -66,7 +66,7 @@
 	<!-- category 수정 폼 -->
 	<section id="contact" class="contact py-1" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
 		<div class="container pt-5 col-lg-6 text-center bg-light shadow">
-			<form action="<%=request.getContextPath()%>/admin/categoryListUpdateAction.jsp">
+			<form action="<%=request.getContextPath()%>/admin/categoryListUpdateAction.jsp" method="post" id="categoryForm">
 				<div class="shadow">
 					<div class="form-group mt-3 row">
 						<div class="col">categoryNo</div>
@@ -80,13 +80,13 @@
 							<%
 								if((category.getCategoryKind()).equals("지출")){
 							%>		
-									<input type="radio" name="categoryKind" value="지출" checked>지출
-									<input type="radio" name="categoryKind" value="수입">수입	
+									<input type="radio" name="categoryKind" class="categoryKind" value="지출" checked>지출
+									<input type="radio" name="categoryKind" class="categoryKind" value="수입">수입	
 							<%		
 								} else {
 							%>		
-									<input type="radio" name="categoryKind" value="지출">지출
-									<input type="radio" name="categoryKind" value="수입" checked>수입	
+									<input type="radio" name="categoryKind" class="categoryKind" value="지출">지출
+									<input type="radio" name="categoryKind" class="categoryKind" value="수입" checked>수입	
 							<%		
 								}
 							%>
@@ -96,24 +96,43 @@
 						<div class="form-group mt-3 row">
 							<div class="col">categoryName</div>
 							<div class="col">
-								<input type="text" name="categoryName" value="<%=category.getCategoryName()%>">
+								<input type="text" name="categoryName" id="categoryName" value="<%=category.getCategoryName()%>">
 							</div>
-						</div>
-						<div>
-							<%	// 공백 입력 시, 문장 출력 ("카테고리명을 입력해주세요")
-								String msg = request.getParameter("msg");
-								if(msg!=null){
-							%>
-									<%=msg%>
-							<%
-								}
-							%>
 						</div>
 					</div>
 				</div>
-				<div class="text-center my-3"><button type="submit" class="my-3 btn btn-lg btn-danger">수정</button></div>
+				<div class="text-center my-3"><button type="button" id="categoryBtn" class="my-3 btn btn-lg btn-danger">수정</button></div>
 			</form>
 		</div>
 	</section>
+	
+	<!-- js로 유효성검사 -->
+	<script>
+	let categoryBtn = document.querySelector('#categoryBtn');
+	categoryBtn.addEventListener('click', function(){
+		// 디버깅
+		console.log('categoryBtn clik!');
+		
+		// 카테고리종류 라디오 유효성검사
+		let categoryKind = document.querySelectorAll('.categoryKind:checked'); // querySelectorAll의 반환타입은 배열(태그의 배열)
+		console.log(categoryKind.length); // 1
+		if(categoryKind.length != 1) {
+			alert('수입/지출을 선택하세요');
+			categoryKind.focus();
+			return;
+		}
+ 
+		// 카테고리내용 유효성 검사
+		let categoryName = document.querySelector('#categoryName');
+		if(categoryName.value == ''){
+			alert('카테고리 내용을 입력하세요');
+			categoryName.focus();
+			return;
+		}
+		
+		let categoryForm = document.querySelector('#categoryForm');
+		categoryForm.submit();
+	})
+	</script>
 </body>
 </html>
